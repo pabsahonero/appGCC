@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">AppGCC</string>
+    <!-- Profile -->
+    <string name="tv_first_name">Nombre</string>
+    <string name="tv_last_name">Apellido</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_phone">Teléfono</string>
+    <string name="tv_password">Contraseña</string>
+
+    <string name="address">Calle Falsa 123</string>
+    <string name="phone" translatable="false">11-4444-5555</string>
+    <string name="whatsapp" translatable="false">5491144445555</string>
+    <string name="whatsapp_msg">Hola, quiero hacer un pedido</string>
+    <string name="text_contact_phone">Teléfono:</string>
+    <string name="text_whatsapp" translatable="false">WhatsApp:</string>
+    <string name="main_title" translatable="false">Gordos con chorizo</string>
+    <string name="main_subtitle">App de delivery</string>
+    <string name="text_email" translatable="false">Email</string>
+    <string name="text_password">Contraseña</string>
+    <string name="text_forgot_password">¿Olvidaste tu contraseña? Haz click aquí</string>
+    <string name="text_logo" translatable="false">Logo</string>
+    <string name="text_btnWp">Botón WhatsApp</string>
+    <string name="text_btnBack">Botón volver</string>
+    <string name="text_map">Mapa ubicación</string>
+    <string name="text_register_form">Formulario de registro</string>
+    <string name="text_address">Dirección:</string>
+    <string name="profile_title">Información de perfil</string>
+    <string name="log_title">Historial de pedidos</string>
+
+    <!-- buttons -->
+    <string name="button_cancel">Cancelar</string>
+    <string name="button_register">Registrarse</string>
+    <string name="button_login">Ingresar</string>
+    <string name="button_return">Volver</string>
+    <string name="button_whatsapp">Contáctanos por WhatsApp</string>
+    <string name="button_edit_profile">Editar</string>
+    <!-- hints -->
+    <string name="hint_first_name">Ingresar nombre</string>
+    <string name="hint_last_name">Ingresar apellido</string>
+    <string name="hint_phone">Ingresar teléfono</string>
+    <string name="hint_email">Ingresar email</string>
+    <string name="hint_password">Ingresar contraseña</string>
+    <!-- errors -->
+    <string name="error_first_name">Es necesario ingresar un nombre</string>
+    <string name="error_last_name">Es necesario ingresar un apellido</string>
+    <string name="error_phone">Es necesario ingresar un teléfono</string>
+    <string name="error_email">Es necesario ingresar un email</string>
+    <string name="error_password">Es necesario ingresar una contraseña</string>
+    <!-- toasts -->
+    <string name="toast_signup_ok">Registrado con éxito</string>
+    <string name="toast_signup_failed">Todos los campos son obligatorios</string>
+    <string name="title_activity_login" translatable="false">LoginActivity</string>
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password" translatable="false">Password</string>
+    <string name="invalid_username">No es un usuario valido</string>
+    <string name="invalid_password">La contraseña debe tener >5 caracteres</string>
+    <!-- main-->
+    <string name="tv_main_sub">¿Qué vas a pedir hoy?</string>
+    <string name="tv_main_welcome">Bienvenido Pablo</string>
+    <string name="tv_main_food">Comidas</string>
+    <string name="tv_main_dessert">Postres</string>
+    <string name="tv_main_drink">Bebidas</string>
+    <string name="text_btn_food">Botón comidas</string>
+    <string name="text_btn_dessert">Botón postres</string>
+    <string name="text_btn_drink">Botón bebidas</string>
+</resources>
