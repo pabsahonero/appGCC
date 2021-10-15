@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profileItem"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/btn_profile" />
+
+    <item
+        android:id="@+id/ordersItem"
+        android:icon="@drawable/ic_order_log"
+        android:title="@string/btn_order_log" />
+
+    <item
+        android:id="@+id/contactItem"
+        android:icon="@drawable/ic_contact"
+        android:title="@string/btn_contact" />
+
+</menu>

@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (email TEXT PRIMARY KEY, firstName TEXT, lastName TEXT, phone TEXT, password TEXT)");
-        db.execSQL("CREATE TABLE " + TABLE_NAME_2 + " (orderid INTEGER PRIMARY KEY AUTOINCREMENT, itemname TEXT, itemquantity TEXT, itemprice TEXT, FOREIGN KEY(customerid) REFERENCES orderdetails(email))");
+        db.execSQL("CREATE TABLE " + TABLE_NAME_2 + " (orderid INTEGER PRIMARY KEY AUTOINCREMENT, itemname TEXT, itemquantity TEXT, itemprice TEXT, customerid TEXT, FOREIGN KEY(customerid) REFERENCES Customers(email))");
     }
 
     @Override
@@ -69,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor checkCostumer(String searchstr) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Customers WHERE email = " + searchstr, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Customers WHERE Email = " + searchstr, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }

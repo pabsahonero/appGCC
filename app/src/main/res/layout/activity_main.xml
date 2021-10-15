@@ -69,7 +69,7 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/blue"
-            android:onClick="navegar"
+            android:onClick="loginUser"
             android:text="@string/button_login"
             android:textColor="@color/white"
             android:textSize="16sp" />
@@ -81,7 +81,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/red"
-            android:onClick="registrar"
+            android:onClick="createUser"
             android:text="@string/button_register"
             android:textColor="@color/black"
             android:textSize="16sp" />

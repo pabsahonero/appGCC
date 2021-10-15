@@ -6,7 +6,6 @@
     <string name="text_password">Password</string>
     <string name="text_btnWp">WhatsApp Button</string>
     <string name="text_btnBack">Return Button</string>
-    <string name="text_forgot_password">Forgot your password? Click here</string>
     <string name="text_map">Address Map</string>
     <string name="text_register_form">Register Form</string>
     <string name="text_address">Address:</string>
@@ -25,7 +24,7 @@
     <string name="error_phone">Phone is necessary</string>
     <string name="error_email">Email is necessary</string>
     <string name="error_password">Password is necessary</string>
-    <string name="invalid_username">Invalid user</string>
+    <string name="login_invalid_user">Invalid email/password</string>
     <string name="invalid_password">Password must have >5 characters</string>
     <string name="profile_title">Profile information</string>
     <string name="tv_first_name">First name</string>
@@ -47,4 +46,10 @@
     <string name="text_btn_dessert">Desserts button</string>
     <string name="text_btn_drink">Drinks button</string>
     <string name="log_title">Order log</string>
+    <string name="toast_signup_same_user">An account with this email already exists</string>
+    <string name="btn_profile">Profile</string>
+    <string name="btn_contact">Contact us</string>
+    <string name="btn_order_log">Purchase log order</string>
+    <string name="login_welcome">Welcome</string>
+    <string name="login_complete">Enter your email and password</string>
 </resources>

@@ -28,6 +28,20 @@ public class CustomersDAO {
         cv.put("password", customer.getPassword());
         database.insert(TABLE_NAME, null, cv);
         database.close();
+
+    }
+    public boolean insertCustomer(@NonNull Customer customer, Context context) {
+        SQLiteDatabase database = new DatabaseHelper(context).getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("email", customer.getEmail());
+        cv.put("firstName", customer.getFirstName());
+        cv.put("lastName", customer.getLastName());
+        cv.put("phone", customer.getPhone());
+        cv.put("password", customer.getPassword());
+        long result = database.insert(TABLE_NAME, null, cv);
+        database.close();
+        if(result==-1) return false;
+        else return true;
     }
 
     public Collection<Customer> getCustomerByExample (Customer customer, Context context) {
@@ -42,11 +56,6 @@ public class CustomersDAO {
         return customer1;
     }
 
-    public int searchCustomer (String costumer) {
-        int x=0;
-        return x;
-    }
-
     private Customer extractCustomer(Cursor cursor) {
         Customer customer = new Customer();
         customer.setEmail(cursor.getString(cursor.getColumnIndexOrThrow("email")));
@@ -59,9 +68,7 @@ public class CustomersDAO {
     @NonNull
     private StringBuilder getSelectCustomers(Customer customer) {
         StringBuilder sql = new StringBuilder("SELECT * FROM " + TABLE_NAME + " WHERE 1=1");
-
         if (customer !=null) {
-
             if (!TextUtils.isEmpty(customer.getEmail())) {
                 sql.append(" and email =" + customer.getEmail() + " ");
             }

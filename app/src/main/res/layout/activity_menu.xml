@@ -5,12 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bc_light_blue"
-    tools:context=".Activity.MenuActivity">
+    tools:context=".Activity.MenuActivity"
+    tools:layout_editor_absoluteY="25dp">
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView3">
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@id/framelay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,7 +105,8 @@
                 android:id="@+id/btnDrink"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:adjustViewBounds="false"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
                 android:backgroundTint="@color/transparent"
                 android:contentDescription="@string/text_btn_drink"
                 android:cropToPadding="true"
@@ -108,4 +115,21 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/framelay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_navigation_menu" />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

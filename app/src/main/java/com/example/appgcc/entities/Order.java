@@ -1,26 +1,26 @@
 package com.example.appgcc.entities;
 
 public class Order {
-    private String itemID;
+    private String orderID;
     private String itemName;
     private String itemQuantity;
     private String itemPrice;
     private String customerID;
 
-    public Order(String itemID, String itemName, String itemQuantity, String itemPrice, String customerID) {
-        this.itemID = itemID;
+    public Order(String orderID, String itemName, String itemQuantity, String itemPrice, String customerID) {
+        this.orderID = orderID;
         this.itemName = itemName;
         this.itemQuantity = itemQuantity;
         this.itemPrice = itemPrice;
         this.customerID = customerID;
     }
 
-    public String getItemID() {
-        return itemID;
+    public String getOrderID() {
+        return orderID;
     }
 
-    public void setItemID(String itemID) {
-        this.itemID = itemID;
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
     public String getItemName() {
@@ -55,8 +55,7 @@ public class Order {
         this.customerID = customerID;
     }
 
-
     public boolean isComplete() {
-        return !this.getItemID().isEmpty() && !this.getItemName().isEmpty() && !this.getItemPrice().isEmpty() && !this.getItemQuantity().isEmpty();
+        return !this.getOrderID().isEmpty() && !this.getItemName().isEmpty() && !this.getItemPrice().isEmpty() && !this.getItemQuantity().isEmpty();
     }
 }

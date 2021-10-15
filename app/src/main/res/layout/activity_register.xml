@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:backgroundTint="@color/blue"
-                android:onClick="signUp"
+                android:onClick="createUser"
                 android:text="@string/button_register"
                 android:textColor="@color/white" />
 

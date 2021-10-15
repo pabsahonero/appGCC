@@ -3,7 +3,6 @@ package com.example.appgcc.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,7 +27,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etFirstName, etLastName, etPhone, etEmail, etPassword;
     private TextInputLayout tilFirstName, tilLastName, tilPhone, tilEmail, tilPassword;
     private CustomersDAO customersDAO;
-    private Button btnCancelSignUp;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -46,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         tilPhone = (TextInputLayout) findViewById(R.id.tilPhone);
         tilEmail = (TextInputLayout) findViewById(R.id.tilEmail);
         tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
-        btnCancelSignUp = findViewById(R.id.btnCancelSignUp);
+        Button btnCancelSignUp = findViewById(R.id.btnCancelSignUp);
 
         btnCancelSignUp.setOnTouchListener(new View.OnTouchListener() {
             final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(),new GestureDetector.SimpleOnGestureListener() {
@@ -70,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void signUp(View view) {
         Customer customer = getCustomer();
         //customer.isComplete()
-        if (validateForm()) {
+        if (customer.isComplete()) {
             customersDAO.saveCustomer(customer, this);
             cleanData();
             Toast.makeText(this, getString(R.string.toast_signup_ok), Toast.LENGTH_SHORT).show();
@@ -78,6 +76,29 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.toast_signup_failed), Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void createUser (View view) {
+        Customer customer = getCustomer();
+        DatabaseHelper helper = new DatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String email = etEmail.getText().toString();
+        setMissingInputs();
+        if (!customer.isComplete()) {
+            Toast.makeText(this, getString(R.string.toast_signup_failed), Toast.LENGTH_SHORT).show();
+        } else {
+            Cursor fila = db.rawQuery
+                    ("Select email from customers where email = " + email, null );
+            if (fila.moveToFirst()) {
+                etEmail.setText(fila.getString(0));
+                Toast.makeText(this, getString(R.string.toast_signup_same_user), Toast.LENGTH_SHORT).show();
+            } else {
+            customersDAO.saveCustomer(customer, this);
+            cleanData();
+            Toast.makeText(this, getString(R.string.toast_signup_ok), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     private void cleanData() {
         etFirstName.getText().clear();
         etLastName.getText().clear();
@@ -101,7 +122,6 @@ public class RegisterActivity extends AppCompatActivity {
         customer.setPhone(etPhone.getText().toString());
         customer.setEmail(etEmail.getText().toString());
         customer.setPassword(etPassword.getText().toString());
-
         return customer;
     }
 
@@ -117,71 +137,27 @@ public class RegisterActivity extends AppCompatActivity {
                 fillData(customer);
             }
         } else {
+            setMissingInputs();
             Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void volverInicio (View view) {
-
-        Intent inicio = new Intent(this, MainActivity.class);
-        startActivity(inicio);
-        //Toast.makeText(this, "Vuelve a presionar para volver a la pantalla de inicio", Toast.LENGTH_LONG).show();
-    }
-
-    private boolean validateForm() {
-        if (!validateEditText(etFirstName, tilFirstName, R.string.error_first_name)) {
-            return false;
-        }
-        if (!validateEditText(etLastName, tilLastName, R.string.error_last_name)) {
-            return false;
-        }
-        if (!validateEditText(etPhone, tilPhone, R.string.error_phone)) {
-            return false;
-        }
-        if (!validateEditText(etEmail, tilEmail, R.string.error_email)) {
-            return false;
-        }
-        if (!validateEditText(etPassword, tilPassword, R.string.error_password)) {
-            return false;
-        }
-        return true;
-    }
-
-    private Boolean validateEditText(EditText editText, TextInputLayout textInputLayout, int errorString) {
-        if (editText.getText().toString().trim().isEmpty()) {
-            textInputLayout.setError(getString(errorString));
-            return false;
-        } else {
-            textInputLayout.setErrorEnabled(false);
-        }
-
-        return true;
-    }
-
-    public void Buscar (View v) {
-        DatabaseHelper admin = new DatabaseHelper(this);
-        SQLiteDatabase database = admin.getWritableDatabase();
-
-        String email = etEmail.getText().toString();
-
-        if (validateEditText(etEmail, tilEmail, R.string.error_email)) {
-            Cursor fila = database.rawQuery
-                    ("select firstName, lastName, phone from users where email =" + email, null);
-
-            if (fila.moveToFirst()) {
-                etFirstName.setText(fila.getString(0));
-                etLastName.setText(fila.getString(1));
-                etPhone.setText(fila.getString(2));
-
-                database.close();
-            } else {
-                Toast.makeText(this, "No existe registro", Toast.LENGTH_LONG).show();
-                database.close();
-            }
-
-        } else {
-            Toast.makeText(this, "Debes ingresar email", Toast.LENGTH_LONG).show();
-        }
+    private void setMissingInputs (){
+        if (etEmail.getText().toString().trim().isEmpty()) {
+            tilEmail.setError(getString(R.string.error_email));
+        } else tilEmail.setErrorEnabled(false);
+        if (etPassword.getText().toString().trim().isEmpty()) {
+            tilPassword.setError(getString(R.string.error_password));
+        } else tilPassword.setErrorEnabled(false);
+        if (etFirstName.getText().toString().trim().isEmpty()) {
+            tilFirstName.setError(getString(R.string.error_first_name));
+        } else tilFirstName.setErrorEnabled(false);
+        if (etLastName.getText().toString().trim().isEmpty()) {
+            tilLastName.setError(getString(R.string.error_last_name));
+        } else tilLastName.setErrorEnabled(false);
+        if (etPhone.getText().toString().trim().isEmpty()) {
+            tilPhone.setError(getString(R.string.error_phone));
+        } else tilPhone.setErrorEnabled(false);
     }
 
     public void Eliminar (View v) {
@@ -204,39 +180,6 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Debes ingresar email", Toast.LENGTH_LONG).show();
             database.close();
-        }
-    }
-    public void Modificar (View v) {
-        DatabaseHelper admin = new DatabaseHelper(this);
-        SQLiteDatabase database = admin.getWritableDatabase();
-
-        String firstName = etFirstName.getText().toString();
-        String lastName = etLastName.getText().toString();
-        String phone = etPhone.getText().toString();
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-
-        if (validateForm()){
-            ContentValues registro = new ContentValues();
-            registro.put("email", email);
-            registro.put("firstName", firstName);
-            registro.put("lastName", lastName);
-            registro.put("phone", phone);
-            registro.put("password", password);
-
-            int cantidad = database.update("users", registro, "email=" + email, null);
-
-            if (cantidad==1) {
-                Toast.makeText(this, "modificado", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "El email no existe", Toast.LENGTH_LONG).show();
-            }
-
-            cleanData();
-
-            database.close();
-        } else {
-            Toast.makeText(this, "debes llenar todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
 }

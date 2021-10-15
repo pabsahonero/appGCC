@@ -3,11 +3,15 @@ package com.example.appgcc.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.appgcc.R;
+import com.example.appgcc.db.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,26 +21,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         txt_user = (EditText) findViewById(R.id.txtUser);
         txt_password = (EditText) findViewById(R.id.txtPass);
     }
 
-    public void registrar (View view) {
-        Intent registro = new Intent (this, RegisterActivity.class);
-        registro.putExtra("user", txt_user.getText().toString());
-        registro.putExtra("pass", txt_password.getText().toString());
-        startActivity(registro);
+    public void createUser (View view) {
+        Intent intent = new Intent (this, RegisterActivity.class);
+        startActivity(intent);
     }
 
-    public void navegar (View view) {
-        Intent web = new Intent (this, ContactActivity.class);
-        web.putExtra("user", txt_user.getText().toString());
-        startActivity(web);
-    }
-
-    public void ingresar (View view) {
-        Intent ingreso = new Intent(this, ProfileActivity.class);
-        startActivity(ingreso);
+    public void loginUser (View v) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        String email = txt_user.getText().toString();
+        String password = txt_password.getText().toString();
+        if ((!email.isEmpty()) && (!password.isEmpty())) {
+            Cursor query = db.rawQuery
+                    ( "Select email, password from customers where email = " + email + " and password = " + password, null );
+            if (query.moveToFirst()) {
+                txt_user.setText(query.getString(0));
+                txt_password.setText(query.getString(1));
+                Toast.makeText(this, getString(R.string.login_welcome), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, MenuActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, getString(R.string.login_invalid_user), Toast.LENGTH_SHORT).show();
+            }
+            db.close();
+        } else{
+            Toast.makeText(this, getString(R.string.login_complete), Toast.LENGTH_SHORT).show();
+        }
     }
 }
