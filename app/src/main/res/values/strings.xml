@@ -43,11 +43,14 @@
     <string name="hint_email">Ingresar email</string>
     <string name="hint_password">Ingresar contraseña</string>
     <!-- errors -->
-    <string name="error_first_name">Es necesario ingresar un nombre</string>
-    <string name="error_last_name">Es necesario ingresar un apellido</string>
-    <string name="error_phone">Es necesario ingresar un teléfono</string>
-    <string name="error_email">Es necesario ingresar un email</string>
-    <string name="error_password">Es necesario ingresar una contraseña</string>
+    <string name="error_first_name">Nombre obligatorio</string>
+    <string name="error_last_name">Apellido obligatorio</string>
+    <string name="error_phone">Teléfono obligatorio</string>
+    <string name="error_email">Email oblitarorio</string>
+    <string name="error_password">Contraseña oblitaroria y debe ser tener al menos 6 caracteres</string>
+    <string name="invalid_email">Formato del email incorrecto</string>
+    <string name="wrong_password">Contraseña incorrecta</string>
+    <string name="weak_password">La contraseña debe tener al menos 6 caracteres</string>
     <!-- toasts -->
     <string name="toast_signup_ok">Registrado con éxito</string>
     <string name="toast_signup_failed">Todos los campos son obligatorios</string>
@@ -58,7 +61,7 @@
     <string name="login_welcome">Bienvenido</string>
     <string name="login_complete">Ingresa tu email y contraseña</string>
     <string name="login_invalid_user">Email/password valido</string>
-    <string name="invalid_password">La contraseña debe tener >5 caracteres</string>
+    <string name="invalid_password">La contraseña debe tener al menos 6 caracteres</string>
     <!-- main-->
     <string name="tv_main_sub">¿Qué vas a pedir hoy?</string>
     <string name="tv_main_welcome">Bienvenido Pablo</string>
@@ -68,8 +71,9 @@
     <string name="text_btn_food">Botón comidas</string>
     <string name="text_btn_dessert">Botón postres</string>
     <string name="text_btn_drink">Botón bebidas</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
+
 </resources>

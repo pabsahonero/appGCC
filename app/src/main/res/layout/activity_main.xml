@@ -49,6 +49,7 @@
             android:drawableStart="@drawable/ic_baseline_account_circle_24"
             android:hint="@string/text_email"
             android:inputType="textEmailAddress"
+            android:textColorHint="#616161"
             android:textSize="20sp" />
 
         <EditText
@@ -69,19 +70,17 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/blue"
-            android:onClick="loginUser"
             android:text="@string/button_login"
             android:textColor="@color/white"
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/btnRegisterHome"
+            android:id="@+id/btnSignUpHome"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/red"
-            android:onClick="createUser"
             android:text="@string/button_register"
             android:textColor="@color/black"
             android:textSize="16sp" />

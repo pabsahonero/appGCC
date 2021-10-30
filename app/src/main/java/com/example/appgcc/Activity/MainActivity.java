@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.example.appgcc.db.DatabaseHelper;
 public class MainActivity extends AppCompatActivity {
 
     private EditText txt_user, txt_password;
+    private Button btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +25,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         txt_user = (EditText) findViewById(R.id.txtUser);
         txt_password = (EditText) findViewById(R.id.txtPass);
-    }
+        btnSignUp = findViewById(R.id.btnSignUpHome);
 
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+/*
     public void createUser (View view) {
         Intent intent = new Intent (this, RegisterActivity.class);
         startActivity(intent);
     }
-
+*/
     public void loginUser (View v) {
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
