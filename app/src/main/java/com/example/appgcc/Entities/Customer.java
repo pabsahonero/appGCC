@@ -1,4 +1,4 @@
-package com.example.appgcc.entities;
+package com.example.appgcc.Entities;
 
 public class Customer {
     private String firstName;

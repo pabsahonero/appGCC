@@ -1,4 +1,4 @@
-package com.example.appgcc.DAO;
+package com.example.appgcc.Dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import com.example.appgcc.db.DatabaseHelper;
-import com.example.appgcc.entities.Customer;
+import com.example.appgcc.Entities.Customer;
 
 import java.util.ArrayList;
 import java.util.Collection;

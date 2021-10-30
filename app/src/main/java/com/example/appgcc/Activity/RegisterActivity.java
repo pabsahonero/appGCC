@@ -14,10 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.appgcc.Entities.User;
 import com.example.appgcc.db.DatabaseHelper;
-import com.example.appgcc.DAO.CustomersDAO;
+import com.example.appgcc.Dao.CustomersDAO;
 import com.example.appgcc.R;
-import com.example.appgcc.entities.Customer;
+import com.example.appgcc.Entities.Customer;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Collection;
@@ -66,10 +67,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void signUp(View view) {
-        Customer customer = getCustomer();
-        //customer.isComplete()
-        if (customer.isComplete()) {
-            customersDAO.saveCustomer(customer, this);
+        User user = getUser();
+
+        if (validateForm(user)) {
             cleanData();
             Toast.makeText(this, getString(R.string.toast_signup_ok), Toast.LENGTH_SHORT).show();
         } else {
@@ -115,6 +115,24 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword.setText(customer.getPassword());
     }
 
+    private User getUser() {
+        User user = new User(
+                etEmail.getText().toString(),
+                etFirstName.getText().toString(),
+                etLastName.getText().toString(),
+                etPhone.getText().toString(),
+                etPassword.getText().toString()
+        );
+        /*
+        user.setFirstName(etFirstName.getText().toString());
+        user.setLastName(etLastName.getText().toString());
+        user.setPhone(etPhone.getText().toString());
+        user.setEmail(etEmail.getText().toString());
+        user.setPassword(etPassword.getText().toString());
+        */
+        return user;
+    }
+
     private Customer getCustomer() {
         Customer customer = new Customer();
         customer.setFirstName(etFirstName.getText().toString());
@@ -142,10 +160,35 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    private Boolean validateForm (User user) {
+        if (user.getFirstName().isEmpty()) {
+            tilFirstName.setError(getString(R.string.error_first_name));
+            return false;
+        } else tilFirstName.setErrorEnabled(false);
+        if (user.getLastName().isEmpty()) {
+            tilLastName.setError(getString(R.string.error_last_name));
+            return false;
+        } else tilLastName.setErrorEnabled(false);
+        if (user.getPhone().isEmpty()) {
+            tilPhone.setError(getString(R.string.error_phone));
+            return false;
+        } else tilPhone.setErrorEnabled(false);
+        if (user.getEmail().isEmpty()) {
+            tilEmail.setError(getString(R.string.error_email));
+            return false;
+        } else tilEmail.setErrorEnabled(false);
+        if (user.getPassword().isEmpty()) {
+            tilPassword.setError(getString(R.string.error_password));
+            return false;
+        } else tilPassword.setErrorEnabled(false);
+
+        return true;
+    }
+
     private void setMissingInputs (){
         if (etEmail.getText().toString().trim().isEmpty()) {
             tilEmail.setError(getString(R.string.error_email));
-        } else tilEmail.setErrorEnabled(false);
+        } else
         if (etPassword.getText().toString().trim().isEmpty()) {
             tilPassword.setError(getString(R.string.error_password));
         } else tilPassword.setErrorEnabled(false);
@@ -158,28 +201,5 @@ public class RegisterActivity extends AppCompatActivity {
         if (etPhone.getText().toString().trim().isEmpty()) {
             tilPhone.setError(getString(R.string.error_phone));
         } else tilPhone.setErrorEnabled(false);
-    }
-
-    public void Eliminar (View v) {
-        DatabaseHelper admin = new DatabaseHelper(this);
-        SQLiteDatabase database = admin.getWritableDatabase();
-
-        String email = etEmail.getText().toString();
-
-        if (!email.isEmpty()) {
-            int cantidad = database.delete("users", "email=" + email, null);
-            database.close();
-
-            cleanData();
-
-            if (cantidad==1) {
-                Toast.makeText(this, "Email eliminado", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "El email no existe", Toast.LENGTH_LONG).show();
-            }
-        } else {
-            Toast.makeText(this, "Debes ingresar email", Toast.LENGTH_LONG).show();
-            database.close();
-        }
     }
 }
