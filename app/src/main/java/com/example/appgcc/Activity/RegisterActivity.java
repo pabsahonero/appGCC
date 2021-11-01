@@ -1,13 +1,8 @@
 package com.example.appgcc.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -16,33 +11,37 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-import com.example.appgcc.Entities.User;
-import com.example.appgcc.db.DatabaseHelper;
-import com.example.appgcc.Dao.CustomersDAO;
-import com.example.appgcc.R;
 import com.example.appgcc.Entities.Customer;
+import com.example.appgcc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Collection;
-import java.util.regex.Pattern;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    private static final String TAG = "RegisterActivity";
     private EditText etFirstName, etLastName, etPhone, etEmail, etPassword;
-    private TextInputLayout tilFirstName, tilLastName, tilPhone, tilEmail, tilPassword;
     private Button btnSignUp, btnCancelSignUp;
     //private CustomersDAO customersDAO;
     FirebaseAuth firebaseAuth;
     AwesomeValidation awesomeValidation;
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference usersRef = db.collection("users");
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,25 +60,24 @@ public class RegisterActivity extends AppCompatActivity {
         etPhone = (EditText) findViewById(R.id.etPhone);
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
-        tilFirstName = (TextInputLayout) findViewById(R.id.tilFirstName);
-        tilLastName = (TextInputLayout) findViewById(R.id.tilLastName);
-        tilPhone = (TextInputLayout) findViewById(R.id.tilPhone);
-        tilEmail = (TextInputLayout) findViewById(R.id.tilEmail);
-        tilPassword = (TextInputLayout) findViewById(R.id.tilPassword);
         btnCancelSignUp = findViewById(R.id.btnCancelSignUp);
         btnSignUp = findViewById(R.id.btnSignUp);
+
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 String firstName = etFirstName.getText().toString();
                 String lastName = etLastName.getText().toString();
                 String phone = etPhone.getText().toString();
                 String email = etEmail.getText().toString();
                 String pass = etPassword.getText().toString();
+                */
 
                 if (awesomeValidation.validate()) {
-                    firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    registrar();
+                    /*firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
@@ -90,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 setToastError(errorCode);
                             }
                         }
-                    });
+                    });*/
                 } else {
                     Toast.makeText(RegisterActivity.this, getString(R.string.toast_signup_failed), Toast.LENGTH_SHORT).show();
                 }
@@ -101,15 +99,15 @@ public class RegisterActivity extends AppCompatActivity {
             final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(),new GestureDetector.SimpleOnGestureListener() {
                 @Override
                 public boolean onDoubleTap(MotionEvent e) {
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
+                    finish();
                     return super.onDoubleTap(e);
                 }
             });
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                cleanData();
                 gestureDetector.onTouchEvent(motionEvent);
+                cleanData();
+                Toast.makeText(RegisterActivity.this, getString(R.string.double_tap), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -122,6 +120,31 @@ public class RegisterActivity extends AppCompatActivity {
         etPhone.getText().clear();
         etEmail.getText().clear();
         etPassword.getText().clear();
+    }
+
+    private void registrar(){
+        String firstName = etFirstName.getText().toString();
+        String lastName = etLastName.getText().toString();
+        String phone = etPhone.getText().toString();
+        String email = etEmail.getText().toString();
+        String pass = etPassword.getText().toString();
+
+        firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Customer customer = new Customer(firstName, lastName, email, phone, pass);
+
+                    usersRef.add(customer);
+
+                    Toast.makeText(RegisterActivity.this, getString(R.string.toast_signup_ok), Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
+                    setToastError(errorCode);
+                }
+            }
+        });
     }
 /*
     public void signUp(View view) {
@@ -137,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void createUser (View view) {
         Customer customer = getCustomer();
-        DatabaseHelper helper = new DatabaseHelper(this);
+        AppDatabase helper = new AppDatabase(this);
         SQLiteDatabase db = helper.getWritableDatabase();
         String email = etEmail.getText().toString();
         setMissingInputs();
@@ -207,49 +230,6 @@ public class RegisterActivity extends AppCompatActivity {
             setMissingInputs();
             Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private Boolean validateForm (User user) {
-        if (user.getFirstName().isEmpty()) {
-            tilFirstName.setError(getString(R.string.error_first_name));
-            return false;
-        } else tilFirstName.setErrorEnabled(false);
-        if (user.getLastName().isEmpty()) {
-            tilLastName.setError(getString(R.string.error_last_name));
-            return false;
-        } else tilLastName.setErrorEnabled(false);
-        if (user.getPhone().isEmpty()) {
-            tilPhone.setError(getString(R.string.error_phone));
-            return false;
-        } else tilPhone.setErrorEnabled(false);
-        if (user.getEmail().isEmpty()) {
-            tilEmail.setError(getString(R.string.error_email));
-            return false;
-        } else tilEmail.setErrorEnabled(false);
-        if (user.getPassword().isEmpty()) {
-            tilPassword.setError(getString(R.string.error_password));
-            return false;
-        } else tilPassword.setErrorEnabled(false);
-
-        return true;
-    }
-
-    private void setMissingInputs (){
-        if (etEmail.getText().toString().trim().isEmpty()) {
-            tilEmail.setError(getString(R.string.error_email));
-        } else
-        if (etPassword.getText().toString().trim().isEmpty()) {
-            tilPassword.setError(getString(R.string.error_password));
-        } else tilPassword.setErrorEnabled(false);
-        if (etFirstName.getText().toString().trim().isEmpty()) {
-            tilFirstName.setError(getString(R.string.error_first_name));
-        } else tilFirstName.setErrorEnabled(false);
-        if (etLastName.getText().toString().trim().isEmpty()) {
-            tilLastName.setError(getString(R.string.error_last_name));
-        } else tilLastName.setErrorEnabled(false);
-        if (etPhone.getText().toString().trim().isEmpty()) {
-            tilPhone.setError(getString(R.string.error_phone));
-        } else tilPhone.setErrorEnabled(false);
     }
 */
     private void setToastError (String error) {

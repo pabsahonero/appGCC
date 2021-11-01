@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppGCC">
         <activity
-            android:name=".Activity.OrderActivity"
+            android:name=".Activity.FoodListActivity"
             android:exported="true" />
 
         <meta-data
@@ -20,9 +20,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps_api_key" />
 
-        <activity
-            android:name=".Activity.OrderLogActivity"
-            android:exported="true" />
         <activity
             android:name=".Activity.ProfileActivity"
             android:exported="true" />

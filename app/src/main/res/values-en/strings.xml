@@ -17,12 +17,12 @@
     <string name="hint_first_name">Insert first name</string>
     <string name="hint_last_name">Insert last name</string>
     <string name="hint_phone">Insert phone</string>
-    <string name="hint_email">Insert email</string>
+    <string name="hint_email">Insert valid email</string>
     <string name="hint_password">Insert password</string>
     <string name="error_first_name">First name is required</string>
     <string name="error_last_name">Last name is required</string>
     <string name="error_phone">Phone is required</string>
-    <string name="error_email">Email is required</string>
+    <string name="error_email">Valid email is required</string>
     <string name="error_password">Password is required and must be at least 6 characters long</string>
     <string name="login_invalid_user">Invalid email/password</string>
     <string name="invalid_password">Password must be at least 6 characters long</string>
@@ -55,4 +55,8 @@
     <string name="invalid_email">Wrong email format</string>
     <string name="wrong_password">Wrong password</string>
     <string name="weak_password">Password must at least 6 characters long</string>
+    <string name="double_tap">Double tap to return</string>
+    <string name="user_not_found">Invalid user or not registered</string>
+    <string name="user_disabled">User disabled by administrator</string>
+    <string name="btn_logout">Log out</string>
 </resources>

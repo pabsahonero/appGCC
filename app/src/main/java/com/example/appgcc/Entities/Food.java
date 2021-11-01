@@ -7,8 +7,17 @@ import androidx.room.PrimaryKey;
 public class Food {
     @PrimaryKey(autoGenerate = true)
     public int foodID;
-    public String foodName;
-    public float foodPrice;
+    public String name;
+    public Integer categoryID;
+    public float price;
+    public String description;
+
+    public Food(String name, Integer categoryID, float price, String description) {
+        this.name = name;
+        this.categoryID = categoryID;
+        this.price = price;
+        this.description = description;
+    }
 
     public int getFoodID() {
         return foodID;
@@ -19,18 +28,34 @@ public class Food {
     }
 
     public String getName() {
-        return foodName;
+        return name;
     }
 
     public void setName(String name) {
-        this.foodName = name;
+        this.name = name;
+    }
+
+    public Integer getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
     }
 
     public float getPrice() {
-        return foodPrice;
+        return price;
     }
 
     public void setPrice(float price) {
-        this.foodPrice = price;
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

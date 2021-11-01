@@ -7,6 +7,18 @@ public class Customer {
     private String phone;
     private String password;
 
+    public Customer () {
+
+    }
+
+    public Customer(String firstName, String lastName, String email, String phone, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -45,9 +57,5 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isComplete() {
-        return !this.getFirstName().isEmpty() && !this.getLastName().isEmpty() && !this.getEmail().isEmpty() && !this.getPhone().isEmpty() && !this.getPassword().isEmpty();
     }
 }
