@@ -46,13 +46,13 @@ public abstract class AppDatabase extends RoomDatabase {
             dbExecutor.execute(() -> {
                 FoodDao foodDao = INSTANCE.foodDao();
 
-                Food food1 = new Food("Pizza", 0, 500, "Muzzarella, Salsa de Tomate, Morron", "abc123pab@gmail.com");
-                Food food2 = new Food("Hamburguesa", 0, 300, "Queso Cheddar, Tomate, Lechuga, Aderezos", "abc123pab@gmail.com");
-                Food food3 = new Food("Choripan", 0, 300, "Chorizo, Aderezos/Salsas", "abc123pab@gmail.com");
-                Food food4 = new Food("Cerveza", 1, 200, "Stella Artois o Quilmes", "abc123pab@gmail.com");
-                Food food5 = new Food("Gaseosa", 1, 200, "Linea coca-cola", "abc123pab@gmail.com");
-                Food food6 = new Food("Flan casero", 2, 200, "Con dulce de leche o crema", "abc123pab@gmail.com");
-                Food food7 = new Food("Helado", 2, 200, "Sabores de crema o al agua", "abc123pab@gmail.com");
+                Food food1 = new Food("Pizza", "Comida", "500", "Muzzarella, Salsa de Tomate, Morron", "abc123pab@gmail.com");
+                Food food2 = new Food("Hamburguesa", "Comida", "300", "Queso Cheddar, Tomate, Lechuga, Aderezos", "abc123pab@gmail.com");
+                Food food3 = new Food("Choripan", "Comida", "300", "Chorizo, Aderezos/Salsas", "abc123pab@gmail.com");
+                Food food4 = new Food("Cerveza", "Bebida", "200", "Stella Artois o Quilmes", "abc123pab@gmail.com");
+                Food food5 = new Food("Gaseosa", "Bebida", "200", "Linea coca-cola", "abc123pab@gmail.com");
+                Food food6 = new Food("Flan casero", "Postre", "200", "Con dulce de leche o crema", "abc123pab@gmail.com");
+                Food food7 = new Food("Helado", "Postre", "200", "Sabores de crema o al agua", "abc123pab@gmail.com");
 
                 foodDao.insertFood(food1);
                 foodDao.insertFood(food2);

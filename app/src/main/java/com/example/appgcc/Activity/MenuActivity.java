@@ -2,17 +2,27 @@ package com.example.appgcc.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appgcc.Adapater.FoodAdapter;
+import com.example.appgcc.Entities.Food;
 import com.example.appgcc.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+
 public class MenuActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    ArrayList<Food> foods;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,35 +30,39 @@ public class MenuActivity extends AppCompatActivity {
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-
-        if (user == null) {
-            finish();
+        recyclerView = findViewById(R.id.rv_menu);
+        foods = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Food food = new Food("Milanesa " + i, "Comida", "10", "Lechuga, Tomate", "abc123pab@gmail.com");
+            foods.add(food);
         }
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new FoodAdapter(foods);
+        recyclerView.setAdapter(adapter);
 
         TextView tvHello = findViewById(R.id.tvMainWelcome);
         assert user != null;
         String welcome = getText(R.string.tv_main_welcome).toString() + "\n" + user.getEmail();
         tvHello.setText(welcome);
-        /*
-        ImageButton btnFood = findViewById(R.id.btnFood);
-        ImageButton btnDrink = findViewById(R.id.btnDrink);
-        ImageButton btnDessert = findViewById(R.id.btnDessert);
-        btnFood.setOnClickListener(view -> {
-            Intent intent = new Intent (this, FoodListActivity.class);
-            intent.putExtra("category", 0);
+
+        Button btnAddFood = findViewById(R.id.btnAddFood);
+        btnAddFood.setOnClickListener(view -> {
+            AlertDialog alertDialog = new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.dialog_title))
+                    .setMessage(getString(R.string.dialog_msg))
+                    .setView(R.layout.dialog_addfood)
+                    .setPositiveButton(getString(R.string.alert_yes), (dialog, which) -> {
+
+                    })
+                    .setNegativeButton(getString(R.string.alert_no), (dialog, which) -> dialog.cancel())
+                    .show();
+        });
+        Button btnMyFood = findViewById(R.id.btnMyFood);
+        btnMyFood.setOnClickListener(view -> {
+            Intent intent = new Intent(this, FoodListActivity.class);
             startActivity(intent);
         });
-        btnDrink.setOnClickListener(view -> {
-            Intent intent = new Intent (this, FoodListActivity.class);
-            intent.putExtra("category", 1);
-            startActivity(intent);
-        });
-        btnDessert.setOnClickListener(view -> {
-            Intent intent = new Intent (this, FoodListActivity.class);
-            intent.putExtra("category", 2);
-            startActivity(intent);
-        });
-        */
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {

@@ -24,8 +24,8 @@ public class FoodRepository {
         return allFoods;
     }
 
-    public List<Food> getFoodsByCategory(Integer catID) {
-        return foodDao.getFoodsByCategory(catID);
+    public List<Food> getFoodsByCategory(String category) {
+        return foodDao.getFoodsByCategory(category);
     }
     public List<Food> getFoodsByCreator(String creatorId) {
         return foodDao.getFoodsByCreator(creatorId);

@@ -8,14 +8,14 @@ public class Food {
     @PrimaryKey(autoGenerate = true)
     public int foodID;
     public String name;
-    public Integer categoryID;
-    public float price;
+    public String category;
+    public String price;
     public String description;
     public String creatorID;
 
-    public Food(String name, Integer categoryID, float price, String description, String creatorID) {
+    public Food(String name, String category, String price, String description, String creatorID) {
         this.name = name;
-        this.categoryID = categoryID;
+        this.category = category;
         this.price = price;
         this.description = description;
         this.creatorID = creatorID;
@@ -37,19 +37,19 @@ public class Food {
         this.name = name;
     }
 
-    public Integer getCategoryID() {
-        return categoryID;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryID(Integer categoryID) {
-        this.categoryID = categoryID;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

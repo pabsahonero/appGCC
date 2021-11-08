@@ -36,6 +36,8 @@
     <string name="btn_profile">Perfil</string>
     <string name="btn_logout">Cerrar sesión</string>
     <string name="btn_contact">Contáctanos</string>
+    <string name="btn_addFood">Agregar</string>
+    <string name="btn_myList">Mi lista</string>
     <!-- hints -->
     <string name="hint_first_name">Ingresar nombre</string>
     <string name="hint_last_name">Ingresar apellido</string>
@@ -76,8 +78,19 @@
     <string name="text_btn_drink">Botón bebidas</string>
     <string name="alert_title">Cerrar sesión</string>
     <string name="alert_msg">¿Esta seguro que desea cerrar sesión?</string>
-    <string name="alert_yes">Sí</string>
-    <string name="alert_no">No</string>
+    <string name="alert_yes">Aceptar</string>
+    <string name="alert_no">Cancelar</string>
+    <string name="dialog_title">Agregar comida</string>
+    <string name="dialog_msg">Llenar todos los campos</string>
+    <string name="dialog_name">Nombre</string>
+    <string name="dialog_category">Categoria</string>
+    <string name="dialog_price">Precio</string>
+    <string name="dialog_description">Descripción</string>
+    <string-array name="categories_array">
+        <item>Comida</item>
+        <item>Bebida</item>
+        <item>Postre</item>
+    </string-array>
 
     <string name="title_home" translatable="false">Home</string>
     <string name="title_dashboard" translatable="false">Dashboard</string>

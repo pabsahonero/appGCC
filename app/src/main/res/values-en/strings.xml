@@ -60,6 +60,14 @@
     <string name="btn_logout">Log out</string>
     <string name="alert_title">Log out</string>
     <string name="alert_msg">Are you sure you want to log out?</string>
-    <string name="alert_yes">Yes</string>
-    <string name="alert_no">No</string>
+    <string name="alert_yes">Ok</string>
+    <string name="alert_no">Cancel</string>
+    <string name="dialog_name">Name</string>
+    <string name="dialog_category">Category</string>
+    <string name="dialog_price">Price</string>
+    <string name="dialog_description">Description</string>
+    <string name="dialog_title">Add food</string>
+    <string name="dialog_msg">Fill in all the fields</string>
+    <string name="btn_addFood">Add</string>
+    <string name="btn_myList">My list</string>
 </resources>

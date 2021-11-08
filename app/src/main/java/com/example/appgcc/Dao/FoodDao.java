@@ -13,8 +13,8 @@ import java.util.List;
 @Dao
 public interface FoodDao {
 
-    @Query("Select * from food where categoryId = :catId order by foodID")
-    List<Food> getFoodsByCategory(int catId);
+    @Query("Select * from food where category = :category order by foodID")
+    List<Food> getFoodsByCategory(String category);
 
     @Query("Select * from food")
     List<Food> getAllFoodList();

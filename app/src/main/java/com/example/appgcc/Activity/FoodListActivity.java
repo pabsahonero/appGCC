@@ -13,7 +13,7 @@ public class FoodListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foodlist);
-        RecyclerView rvFood = findViewById(R.id.rvFood);
+        RecyclerView rvFood = findViewById(R.id.rv_myFood);
 
     }
 }
