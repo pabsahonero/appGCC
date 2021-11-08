@@ -32,8 +32,8 @@
                 android:id="@+id/textSubTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 android:gravity="center"
                 android:text="@string/main_subtitle"
                 android:textColor="@color/blue_title"
@@ -46,26 +46,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:autofillHints="username"
                 android:drawableStart="@drawable/ic_baseline_account_circle_24"
                 android:hint="@string/text_email"
                 android:inputType="textEmailAddress"
+                android:minHeight="48dp"
                 android:textColorHint="#616161"
-                android:textSize="20sp"
-                android:autofillHints="username" />
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck" />
 
             <EditText
                 android:id="@+id/txtPass"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:autofillHints="password"
                 android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:ems="10"
                 android:hint="@string/text_password"
                 android:inputType="textPassword"
+                android:minHeight="48dp"
                 android:textColorHint="#616161"
-                android:textSize="20sp"
-                tools:ignore="MissingConstraints"
-                android:autofillHints="password" />
+                android:textSize="16sp"
+                tools:ignore="MissingConstraints,TextContrastCheck" />
 
             <Button
                 android:id="@+id/btnLogIn"
@@ -84,7 +87,7 @@
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/red"
                 android:text="@string/button_register"
-                android:textColor="@color/black"
+                android:textColor="#212121"
                 android:textSize="16sp" />
 
         </LinearLayout>

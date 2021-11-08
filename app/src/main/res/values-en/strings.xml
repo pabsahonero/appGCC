@@ -37,7 +37,7 @@
     <string name="whatsapp_msg">Hi, i want to order</string>
     <string name="toast_signup_ok">Successfully registered</string>
     <string name="toast_signup_failed">All fields are required</string>
-    <string name="tv_main_sub">Our menu</string>
+    <string name="tv_main_sub">Food list</string>
     <string name="tv_main_welcome">"Hello"</string>
     <string name="tv_main_food">Foods</string>
     <string name="tv_main_dessert">Desserts</string>

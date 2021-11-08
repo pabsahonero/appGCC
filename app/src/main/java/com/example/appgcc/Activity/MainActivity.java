@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
@@ -31,11 +32,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user!=null) {
+            Intent intent = new Intent (MainActivity.this, MenuActivity.class);
+            startActivity(intent);
+        }
+
         txt_user = findViewById(R.id.txtUser);
         txt_password = findViewById(R.id.txtPass);
         Button btnSignUp = findViewById(R.id.btnSignUpHome);
         Button btnLogIn = findViewById(R.id.btnLogIn);
-        firebaseAuth = FirebaseAuth.getInstance();
+
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.txtUser, Patterns.EMAIL_ADDRESS,R.string.hint_email);
         awesomeValidation.addValidation(this, R.id.txtPass, ".{6,}", R.string.hint_password);
