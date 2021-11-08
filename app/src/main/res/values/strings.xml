@@ -38,6 +38,7 @@
     <string name="btn_contact">Contáctanos</string>
     <string name="btn_addFood">Agregar</string>
     <string name="btn_myList">Mi lista</string>
+    <string name="btn_save">Guardar</string>
     <!-- hints -->
     <string name="hint_first_name">Ingresar nombre</string>
     <string name="hint_last_name">Ingresar apellido</string>
@@ -54,6 +55,7 @@
     <string name="wrong_password">Contraseña incorrecta</string>
     <string name="weak_password">La contraseña debe tener al menos 6 caracteres</string>
     <!-- toasts -->
+    <string name="food_added">Agregado</string>
     <string name="toast_signup_ok">Registrado con éxito</string>
     <string name="toast_signup_failed">Todos los campos son obligatorios</string>
     <string name="toast_signup_same_user">Una cuenta con este email ya existe</string>

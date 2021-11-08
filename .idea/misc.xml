@@ -16,6 +16,7 @@
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_profile.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/lightblue_background.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/red_button_background.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/activity_add_food.xml" value="0.2" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/activity_contact.xml" value="0.209375" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/activity_foodlist.xml" value="0.2046875" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/activity_intro.xml" value="0.209375" />
@@ -33,7 +34,7 @@
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/activity_test.xml" value="0.22" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/activity_web.xml" value="0.25" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/bottom_navigation_menu.xml" value="0.2046875" />
-        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/dialog_addfood.xml" value="0.5" />
+        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/dialog_addfood.xml" value="0.33" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/list_food.xml" value="0.2046875" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/list_item.xml" value="0.209375" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/list_order.xml" value="0.2046875" />
@@ -44,7 +45,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

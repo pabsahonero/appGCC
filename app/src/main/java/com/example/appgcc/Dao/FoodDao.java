@@ -3,6 +3,7 @@ package com.example.appgcc.Dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -22,7 +23,7 @@ public interface FoodDao {
     @Query("Select * from food where creatorID = :creatorId")
     List<Food> getFoodsByCreator(String creatorId);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertFood(Food food);
 
     @Update

@@ -70,4 +70,6 @@
     <string name="dialog_msg">Fill in all the fields</string>
     <string name="btn_addFood">Add</string>
     <string name="btn_myList">My list</string>
+    <string name="btn_save">Save</string>
+    <string name="food_added">Added</string>
 </resources>

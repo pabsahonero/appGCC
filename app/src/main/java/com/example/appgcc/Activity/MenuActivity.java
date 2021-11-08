@@ -3,6 +3,7 @@ package com.example.appgcc.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -13,29 +14,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appgcc.Adapater.FoodAdapter;
 import com.example.appgcc.Entities.Food;
 import com.example.appgcc.R;
+import com.example.appgcc.Repository.FoodRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     ArrayList<Food> foods;
+    EditText name, category, price, description;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = mAuth.getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
         recyclerView = findViewById(R.id.rv_menu);
-        foods = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Food food = new Food("Milanesa " + i, "Comida", "10", "Lechuga, Tomate", "abc123pab@gmail.com");
-            foods.add(food);
-        }
+        name = findViewById(R.id.dialog_name);
+        category = findViewById(R.id.dialog_category);
+        price = findViewById(R.id.dialog_price);
+        description = findViewById(R.id.dialog_description);
+
+        FoodRepository foodRepository = new FoodRepository(getApplication());
+        List<Food> foods = foodRepository.getAllFoods();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FoodAdapter(foods);
         recyclerView.setAdapter(adapter);
@@ -47,15 +53,8 @@ public class MenuActivity extends AppCompatActivity {
 
         Button btnAddFood = findViewById(R.id.btnAddFood);
         btnAddFood.setOnClickListener(view -> {
-            AlertDialog alertDialog = new AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.dialog_title))
-                    .setMessage(getString(R.string.dialog_msg))
-                    .setView(R.layout.dialog_addfood)
-                    .setPositiveButton(getString(R.string.alert_yes), (dialog, which) -> {
-
-                    })
-                    .setNegativeButton(getString(R.string.alert_no), (dialog, which) -> dialog.cancel())
-                    .show();
+            Intent intent = new Intent(this, AddFoodActivity.class);
+            startActivity(intent);
         });
         Button btnMyFood = findViewById(R.id.btnMyFood);
         btnMyFood.setOnClickListener(view -> {
@@ -82,6 +81,11 @@ public class MenuActivity extends AppCompatActivity {
             }
             return true;
         });
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     private void confirmLogOut() {

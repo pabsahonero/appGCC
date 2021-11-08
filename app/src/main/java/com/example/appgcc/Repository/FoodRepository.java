@@ -2,6 +2,8 @@ package com.example.appgcc.Repository;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.appgcc.DB.AppDatabase;
 import com.example.appgcc.Dao.FoodDao;
 import com.example.appgcc.Entities.Food;
@@ -18,6 +20,10 @@ public class FoodRepository {
         AppDatabase appDatabase = AppDatabase.getDatabase(application);
         foodDao = appDatabase.foodDao();
         allFoods = foodDao.getAllFoodList();
+    }
+
+    public List<Food> getFoodsByCategory() {
+        return foodsByCategory;
     }
 
     public List<Food> getAllFoods() {

@@ -11,14 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appgcc.Entities.Food;
 import com.example.appgcc.R;
 
-import java.util.ArrayList;
-
+import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
 
-
-    ArrayList<Food> foods;
-    public FoodAdapter(ArrayList<Food> foods) {
+    List<Food> foods;
+    public FoodAdapter(List<Food> foods) {
         this.foods = foods;
     }
 
