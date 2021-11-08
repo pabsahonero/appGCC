@@ -2,8 +2,9 @@ package com.example.appgcc.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appgcc.R;
@@ -21,8 +22,14 @@ public class MenuActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         if (user == null) {
-            returnLogin();
+            finish();
         }
+
+        TextView tvHello = findViewById(R.id.tvMainWelcome);
+        assert user != null;
+        String welcome = getText(R.string.tv_main_welcome).toString() + "\n" + user.getEmail();
+        tvHello.setText(welcome);
+        /*
         ImageButton btnFood = findViewById(R.id.btnFood);
         ImageButton btnDrink = findViewById(R.id.btnDrink);
         ImageButton btnDessert = findViewById(R.id.btnDessert);
@@ -41,21 +48,20 @@ public class MenuActivity extends AppCompatActivity {
             intent.putExtra("category", 2);
             startActivity(intent);
         });
+        */
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.profileItem:
-                    Intent intent = new Intent (this, ProfileActivity.class);
+                    Intent intent = new Intent(this, ProfileActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.contactItem:
-                    Intent intent2 = new Intent (this, ContactActivity.class);
+                    Intent intent2 = new Intent(this, ContactActivity.class);
                     startActivity(intent2);
                     break;
                 case R.id.logoutItem:
-                    mAuth.signOut();
-                    returnLogin();
+                    confirmLogOut();
                     break;
                 default:
                     return false;
@@ -64,8 +70,16 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    private void returnLogin () {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    private void confirmLogOut() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.alert_title))
+                .setMessage(getString(R.string.alert_msg))
+                .setPositiveButton(getString(R.string.alert_yes), (dialog, which) -> {
+                    mAuth.signOut();
+                    finish();
+                })
+                .setNegativeButton(getString(R.string.alert_no), (dialog, which) -> dialog.cancel())
+                .show();
     }
 }

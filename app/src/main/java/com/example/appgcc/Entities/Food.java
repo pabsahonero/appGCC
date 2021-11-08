@@ -11,12 +11,14 @@ public class Food {
     public Integer categoryID;
     public float price;
     public String description;
+    public String creatorID;
 
-    public Food(String name, Integer categoryID, float price, String description) {
+    public Food(String name, Integer categoryID, float price, String description, String creatorID) {
         this.name = name;
         this.categoryID = categoryID;
         this.price = price;
         this.description = description;
+        this.creatorID = creatorID;
     }
 
     public int getFoodID() {
@@ -57,5 +59,13 @@ public class Food {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCreatorID() {
+        return creatorID;
+    }
+
+    public void setCreatorID(String creatorID) {
+        this.creatorID = creatorID;
     }
 }

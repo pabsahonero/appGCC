@@ -50,7 +50,8 @@
                 android:hint="@string/text_email"
                 android:inputType="textEmailAddress"
                 android:textColorHint="#616161"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:autofillHints="username" />
 
             <EditText
                 android:id="@+id/txtPass"
@@ -63,7 +64,8 @@
                 android:inputType="textPassword"
                 android:textColorHint="#616161"
                 android:textSize="20sp"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+                android:autofillHints="password" />
 
             <Button
                 android:id="@+id/btnLogIn"

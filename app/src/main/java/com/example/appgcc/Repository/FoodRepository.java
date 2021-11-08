@@ -1,13 +1,9 @@
 package com.example.appgcc.Repository;
 
 import android.app.Application;
-import android.content.Context;
-
-import androidx.lifecycle.LiveData;
 
 import com.example.appgcc.DB.AppDatabase;
 import com.example.appgcc.Dao.FoodDao;
-import com.example.appgcc.Entities.CategoryWithFood;
 import com.example.appgcc.Entities.Food;
 
 import java.util.List;
@@ -16,6 +12,7 @@ public class FoodRepository {
 
     private FoodDao foodDao;
     private List<Food> allFoods;
+    private List<Food> foodsByCategory;
 
     public FoodRepository(Application application) {
         AppDatabase appDatabase = AppDatabase.getDatabase(application);
@@ -27,8 +24,11 @@ public class FoodRepository {
         return allFoods;
     }
 
-    public List<CategoryWithFood> getCaterWithFood(Integer catID) {
-        return foodDao.getCategoryWithFoods(catID);
+    public List<Food> getFoodsByCategory(Integer catID) {
+        return foodDao.getFoodsByCategory(catID);
+    }
+    public List<Food> getFoodsByCreator(String creatorId) {
+        return foodDao.getFoodsByCreator(creatorId);
     }
 
     public void insert(Food food) {

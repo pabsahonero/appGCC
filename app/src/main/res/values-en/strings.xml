@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">AppGCC</string>
     <string name="text_contact_phone">Phone:</string>
-    <string name="main_subtitle">Delivery App</string>
+    <string name="main_subtitle">Welcome!</string>
     <string name="text_password">Password</string>
     <string name="text_btnWp">WhatsApp Button</string>
     <string name="text_btnBack">Return Button</string>
@@ -37,8 +37,8 @@
     <string name="whatsapp_msg">Hi, i want to order</string>
     <string name="toast_signup_ok">Successfully registered</string>
     <string name="toast_signup_failed">All fields are required</string>
-    <string name="tv_main_sub">What are you going to order today?</string>
-    <string name="tv_main_welcome">"Welcome "</string>
+    <string name="tv_main_sub">Our menu</string>
+    <string name="tv_main_welcome">"Hello"</string>
     <string name="tv_main_food">Foods</string>
     <string name="tv_main_dessert">Desserts</string>
     <string name="tv_main_drink">Drinks</string>
@@ -49,7 +49,6 @@
     <string name="toast_signup_same_user">An account with this email already exists</string>
     <string name="btn_profile">Profile</string>
     <string name="btn_contact">Contact us</string>
-    <string name="btn_order_log">Purchase log order</string>
     <string name="login_welcome">Welcome</string>
     <string name="login_complete">Enter your email and password</string>
     <string name="invalid_email">Wrong email format</string>
@@ -59,4 +58,8 @@
     <string name="user_not_found">Invalid user or not registered</string>
     <string name="user_disabled">User disabled by administrator</string>
     <string name="btn_logout">Log out</string>
+    <string name="alert_title">Log out</string>
+    <string name="alert_msg">Are you sure you want to log out?</string>
+    <string name="alert_yes">Yes</string>
+    <string name="alert_no">No</string>
 </resources>

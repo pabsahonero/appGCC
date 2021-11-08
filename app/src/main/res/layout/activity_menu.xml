@@ -31,7 +31,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/tv_main_welcome"
                 android:textColor="@color/blue_title"
-                android:textSize="34sp"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
             <TextView
