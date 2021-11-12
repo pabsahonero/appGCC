@@ -38,14 +38,13 @@
     <string name="toast_signup_ok">Successfully registered</string>
     <string name="toast_signup_failed">All fields are required</string>
     <string name="tv_main_sub">Food list</string>
-    <string name="tv_main_welcome">"Hello"</string>
+    <string name="tv_main_welcome">Hello</string>
     <string name="tv_main_food">Foods</string>
     <string name="tv_main_dessert">Desserts</string>
     <string name="tv_main_drink">Drinks</string>
     <string name="text_btn_food">Foods button</string>
     <string name="text_btn_dessert">Desserts button</string>
     <string name="text_btn_drink">Drinks button</string>
-    <string name="log_title">Order log</string>
     <string name="toast_signup_same_user">An account with this email already exists</string>
     <string name="btn_profile">Profile</string>
     <string name="btn_contact">Contact us</string>

@@ -24,7 +24,6 @@
     <string name="text_register_form">Formulario de registro</string>
     <string name="text_address">Dirección:</string>
     <string name="profile_title">Información de perfil</string>
-    <string name="log_title">Historial de pedidos</string>
 
     <!-- buttons -->
     <string name="button_cancel">Cancelar</string>

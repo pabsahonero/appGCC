@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/contactLayout"
     android:layout_width="match_parent"
@@ -43,7 +42,6 @@
                 android:backgroundTint="#00FFFFFF"
                 android:contentDescription="@string/text_btnWp"
                 android:cropToPadding="false"
-                android:onClick="sendWhatsApp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_whataspp"
                 tools:ignore="ImageContrastCheck" />
@@ -66,7 +64,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:minHeight="48dp"
-                android:onClick="openCall"
                 android:text="@string/phone"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -90,23 +87,10 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
                 android:minHeight="48dp"
-                android:onClick="openYoutube"
                 android:text="@string/address"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:contentDescription="@string/text_map"
-                map:uiScrollGestures="false"
-                map:uiZoomControls="true" />
         </LinearLayout>
     </ScrollView>
 
