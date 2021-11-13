@@ -6,7 +6,6 @@
     <string name="text_password">Password</string>
     <string name="text_btnWp">WhatsApp Button</string>
     <string name="text_btnBack">Return Button</string>
-    <string name="text_map">Address Map</string>
     <string name="text_register_form">Register Form</string>
     <string name="text_address">Address:</string>
     <string name="button_cancel">Cancel</string>
@@ -32,7 +31,6 @@
     <string name="tv_email">Email</string>
     <string name="tv_phone">Phone</string>
     <string name="tv_password">Password</string>
-    <string name="button_edit_profile">Edit</string>
     <string name="address">123 Fake St.</string>
     <string name="whatsapp_msg">Hi, i want to order</string>
     <string name="toast_signup_ok">Successfully registered</string>
@@ -71,4 +69,18 @@
     <string name="btn_myList">My list</string>
     <string name="btn_save">Save</string>
     <string name="food_added">Added</string>
+    <string name="button_forgot">Forgot my password</string>
+    <string name="forgot_title">Recover password</string>
+    <string name="forgot_msg">Enter your email to reset your password</string>
+    <string name="forgot_ok">Email sent, check your email</string>
+    <string name="forgot_error">ERROR, try again</string>
+    <string name="title_hours">Opening hours:</string>
+    <string name="btnChangePass">Change password</string>
+    <string name="change_title">Change password</string>
+    <string name="change_ok">Password changed</string>
+    <string name="change_error">ERROR, check the password and try again</string>
+    <string name="tvOldPass">Current password</string>
+    <string name="tvNewPass">New password</string>
+    <string name="hintOldPass">Insert the current password</string>
+    <string name="hintNewPass">Insert the new password</string>
 </resources>

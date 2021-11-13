@@ -6,6 +6,8 @@
     <string name="tv_email">Email</string>
     <string name="tv_phone">Teléfono</string>
     <string name="tv_password">Contraseña</string>
+    <string name="tvOldPass">Contraseña actual</string>
+    <string name="tvNewPass">Contraseña nueva</string>
 
     <string name="address">Calle Falsa 123</string>
     <string name="phone" translatable="false">11-4444-5555</string>
@@ -13,6 +15,7 @@
     <string name="whatsapp_msg">Hola, quiero hacer un pedido</string>
     <string name="text_contact_phone">Teléfono:</string>
     <string name="text_whatsapp" translatable="false">WhatsApp:</string>
+    <string name="title_hours">Horario de atención:</string>
     <string name="main_title" translatable="false">Gordos con chorizo</string>
     <string name="main_subtitle">Bienvenido!</string>
     <string name="text_email" translatable="false">Email</string>
@@ -20,7 +23,6 @@
     <string name="text_logo" translatable="false">Logo</string>
     <string name="text_btnWp">Botón WhatsApp</string>
     <string name="text_btnBack">Botón volver</string>
-    <string name="text_map">Mapa ubicación</string>
     <string name="text_register_form">Formulario de registro</string>
     <string name="text_address">Dirección:</string>
     <string name="profile_title">Información de perfil</string>
@@ -29,27 +31,30 @@
     <string name="button_cancel">Cancelar</string>
     <string name="button_register">Registrarse</string>
     <string name="button_login">Ingresar</string>
+    <string name="button_forgot">Olvide mi contraseña</string>
     <string name="button_return">Volver</string>
     <string name="button_whatsapp">Contáctanos por WhatsApp</string>
-    <string name="button_edit_profile">Editar</string>
     <string name="btn_profile">Perfil</string>
     <string name="btn_logout">Cerrar sesión</string>
     <string name="btn_contact">Contáctanos</string>
     <string name="btn_addFood">Agregar</string>
     <string name="btn_myList">Mi lista</string>
     <string name="btn_save">Guardar</string>
+    <string name="btnChangePass">Cambiar contraseña</string>
     <!-- hints -->
     <string name="hint_first_name">Ingresar nombre</string>
     <string name="hint_last_name">Ingresar apellido</string>
     <string name="hint_phone">Ingresar teléfono</string>
     <string name="hint_email">Ingresar email valido</string>
     <string name="hint_password">Ingresar contraseña</string>
+    <string name="hintOldPass">Ingresar la contraseña actual</string>
+    <string name="hintNewPass">Ingresar la nueva contraseña</string>
     <!-- errors -->
     <string name="error_first_name">Nombre obligatorio</string>
     <string name="error_last_name">Apellido obligatorio</string>
     <string name="error_phone">Teléfono obligatorio</string>
     <string name="error_email">Email valido oblitarorio</string>
-    <string name="error_password">Contraseña oblitaroria y debe ser tener al menos 6 caracteres</string>
+    <string name="error_password">Contraseña oblitaroria y debe tener tener al menos 6 caracteres</string>
     <string name="invalid_email">Formato del email incorrecto</string>
     <string name="wrong_password">Contraseña incorrecta</string>
     <string name="weak_password">La contraseña debe tener al menos 6 caracteres</string>
@@ -81,6 +86,13 @@
     <string name="alert_msg">¿Esta seguro que desea cerrar sesión?</string>
     <string name="alert_yes">Aceptar</string>
     <string name="alert_no">Cancelar</string>
+    <string name="forgot_title">Recuperar contraseña</string>
+    <string name="forgot_msg">Ingresa tu email para recuperar tu contraseña</string>
+    <string name="forgot_ok">Email enviado, revisa tu correo</string>
+    <string name="forgot_error">ERROR, volver a internar</string>
+    <string name="change_title">Cambiar contraseña</string>
+    <string name="change_ok">Contraseña cambiada</string>
+    <string name="change_error">ERROR, verificar contraseña y volver a intentar</string>
     <string name="dialog_title">Agregar comida</string>
     <string name="dialog_msg">Llenar todos los campos</string>
     <string name="dialog_name">Nombre</string>

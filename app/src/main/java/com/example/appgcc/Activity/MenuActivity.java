@@ -89,13 +89,13 @@ public class MenuActivity extends AppCompatActivity {
     private void confirmLogOut() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.alert_title))
-                .setMessage(getString(R.string.alert_msg))
-                .setPositiveButton(getString(R.string.alert_yes), (dialog, which) -> {
-                    mAuth.signOut();
-                    finish();
-                })
-                .setNegativeButton(getString(R.string.alert_no), (dialog, which) -> dialog.cancel())
-                .show();
-    }
+            .setTitle(getString(R.string.alert_title))
+            .setMessage(getString(R.string.alert_msg))
+            .setPositiveButton(getString(R.string.alert_yes), (dialog, which) -> {
+                mAuth.signOut();
+                finish();
+            })
+            .setNegativeButton(getString(R.string.alert_no), (dialog, which) -> dialog.cancel())
+            .show();
+}
 }

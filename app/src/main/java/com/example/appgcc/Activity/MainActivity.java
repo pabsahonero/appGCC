@@ -2,20 +2,19 @@ package com.example.appgcc.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.appgcc.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,16 +24,17 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private EditText txt_user, txt_password;
-    FirebaseAuth firebaseAuth;
+    private FirebaseAuth mAuth;
+
     AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user!=null) {
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user !=null) {
             Intent intent = new Intent (MainActivity.this, MenuActivity.class);
             startActivity(intent);
         }
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         txt_password = findViewById(R.id.txtPass);
         Button btnSignUp = findViewById(R.id.btnSignUpHome);
         Button btnLogIn = findViewById(R.id.btnLogIn);
+        TextView btnForgot = findViewById(R.id.tvForgotPassword);
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.txtUser, Patterns.EMAIL_ADDRESS,R.string.hint_email);
@@ -53,16 +54,13 @@ public class MainActivity extends AppCompatActivity {
                 String email = txt_user.getText().toString();
                 String pass = txt_password.getText().toString();
 
-                firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                            startActivity(intent);
-                        } else {
-                            String errorCode = ((FirebaseAuthException) Objects.requireNonNull(task.getException())).getErrorCode();
-                            setToastError(errorCode);
-                        }
+                mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(task -> {
+                    if(task.isSuccessful()) {
+                        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                        startActivity(intent);
+                    } else {
+                        String errorCode = ((FirebaseAuthException) Objects.requireNonNull(task.getException())).getErrorCode();
+                        setToastError(errorCode);
                     }
                 });
             }
@@ -71,6 +69,22 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(view -> {
             Intent intent = new Intent (MainActivity.this, RegisterActivity.class);
             startActivity(intent);
+        });
+
+        btnForgot.setOnClickListener(view -> {
+            EditText resetEmail = new EditText(view.getContext());
+            resetEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+            AlertDialog.Builder resetDialog = new AlertDialog.Builder(view.getContext());
+            resetDialog.setTitle(getString(R.string.forgot_title))
+            .setMessage(getString(R.string.forgot_msg))
+            .setView(resetEmail)
+            .setPositiveButton(getString(R.string.alert_yes), (dialogInterface, i) -> {
+                String email = resetEmail.getText().toString();
+                mAuth.sendPasswordResetEmail(email)
+                        .addOnSuccessListener(unused -> Toast.makeText(MainActivity.this, getString(R.string.forgot_ok), Toast.LENGTH_LONG).show())
+                        .addOnFailureListener(e -> Toast.makeText(MainActivity.this, getString(R.string.forgot_error) + e.getMessage(), Toast.LENGTH_LONG).show());
+            }).setNegativeButton(getString(R.string.alert_no), (dialogInterface, i) -> dialogInterface.cancel())
+            .show();
         });
     }
 

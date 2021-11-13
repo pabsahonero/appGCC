@@ -25,17 +25,17 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText etFirstName, etLastName, etPhone, etEmail, etPassword;
-    private Button btnSignUp, btnCancelSignUp;
     FirebaseAuth firebaseAuth;
     AwesomeValidation awesomeValidation;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference usersRef = db.collection("users");
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final CollectionReference usersRef = db.collection("users");
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
         etPhone = findViewById(R.id.etPhone);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
-        btnCancelSignUp = findViewById(R.id.btnCancelSignUp);
-        btnSignUp = findViewById(R.id.btnSignUp);
-
+        Button btnCancelSignUp = findViewById(R.id.btnCancelSignUp);
+        Button btnSignUp = findViewById(R.id.btnSignUp);
 
         btnSignUp.setOnClickListener(view -> {
             if (awesomeValidation.validate()) {
@@ -102,7 +101,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Customer customer = new Customer(firstName, lastName, email, phone, pass);
-                    usersRef.add(customer);
+                    String userID = firebaseAuth.getUid();
+                    DocumentReference documentReference = usersRef.document(userID);
+                    documentReference.set(customer);
                     Toast.makeText(RegisterActivity.this, getString(R.string.toast_signup_ok), Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
@@ -114,7 +115,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setToastError (String error) {
-
         switch (error) {
             case "ERROR_INVALID_EMAIL":
                 Toast.makeText(RegisterActivity.this,getString(R.string.invalid_email), Toast.LENGTH_LONG).show();

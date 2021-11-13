@@ -1,61 +1,72 @@
 package com.example.appgcc.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appgcc.Entities.Customer;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.appgcc.R;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class ProfileActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private FirebaseUser currentUser = mAuth.getCurrentUser();
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference usersRef = db.collection("users");
-    private EditText etFirstName, etLastName, etPhone, etEmail, etPass;
+    private DocumentReference docRef;
+    private TextView pFirstName, pLastName, pPhone, pEmail;
+    private EditText etNewPass;
+    AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        etFirstName = findViewById(R.id.et_first_name);
-        etLastName = findViewById(R.id.et_last_name);
-        etPhone = findViewById(R.id.et_phone);
-        etEmail = findViewById(R.id.et_email);
-        etPass = findViewById(R.id.et_password);
+        pFirstName = findViewById(R.id.pName);
+        pLastName = findViewById(R.id.pLastName);
+        pPhone = findViewById(R.id.pPhone);
+        pEmail = findViewById(R.id.pEmail);
+        etNewPass = findViewById(R.id.etNewPass);
+        Button btnChange = findViewById(R.id.btnChangePass);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+        CollectionReference usersRef = fStore.collection("users");
+        String userID = mAuth.getUid();
+        docRef = usersRef.document(userID);
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        awesomeValidation.addValidation(this, R.id.etNewPass, ".{6,}",R.string.error_password);
+
+        btnChange.setOnClickListener(view -> {
+            if (awesomeValidation.validate()) {
+            String pass = etNewPass.getText().toString().trim();
+            user.updatePassword(pass)
+                    .addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(), getString(R.string.change_ok), Toast.LENGTH_LONG).show())
+                    .addOnFailureListener(e -> Toast.makeText(getApplicationContext(), getString(R.string.change_error) + e.getMessage(), Toast.LENGTH_LONG).show());
+            docRef.update("password", pass);
+            } else {
+                Toast.makeText(ProfileActivity.this, getString(R.string.error_password), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         loadUser();
     }
 
     public void loadUser() {
-        usersRef.whereEqualTo("email", currentUser.getEmail())
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            Customer customer = documentSnapshot.toObject(Customer.class);
-                            String firstName = customer.getFirstName();
-                            String lastName = customer.getLastName();
-                            String phone = customer.getPhone();
-                            String email = customer.getEmail();
-                            String pass = customer.getPassword();
-                            etFirstName.setText(firstName);
-                            etLastName.setText(lastName);
-                            etPhone.setText(phone);
-                            etEmail.setText(email);
-                            etPass.setText(pass);
-                        }
-                    }
-                });
+        docRef.addSnapshotListener(this, (value, error) -> {
+            pFirstName.setText(value.getString("firstName"));
+            pLastName.setText(value.getString("lastName"));
+            pEmail.setText(value.getString("email"));
+            pPhone.setText(value.getString("phone"));
+        });
     }
 }
