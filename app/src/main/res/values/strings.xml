@@ -6,12 +6,14 @@
     <string name="tv_email">Email</string>
     <string name="tv_phone">Teléfono</string>
     <string name="tv_password">Contraseña</string>
-    <string name="tvOldPass">Contraseña actual</string>
-    <string name="tvNewPass">Contraseña nueva</string>
 
     <string name="address">Calle Falsa 123</string>
     <string name="phone" translatable="false">11-4444-5555</string>
     <string name="whatsapp" translatable="false">5491144445555</string>
+    <string name="hours">Todos los días de 10 a 20 hs</string>
+    <string name="is_open">En este momento ABIERTO</string>
+    <string name="is_closed">En este momento CERRADO</string>
+    <string name="share">Compartir</string>
     <string name="whatsapp_msg">Hola, quiero hacer un pedido</string>
     <string name="text_contact_phone">Teléfono:</string>
     <string name="text_whatsapp" translatable="false">WhatsApp:</string>
@@ -47,14 +49,16 @@
     <string name="hint_phone">Ingresar teléfono</string>
     <string name="hint_email">Ingresar email valido</string>
     <string name="hint_password">Ingresar contraseña</string>
-    <string name="hintOldPass">Ingresar la contraseña actual</string>
-    <string name="hintNewPass">Ingresar la nueva contraseña</string>
+    <string name="hint_name">Ingresar nombre</string>
+    <string name="hint_price">Ingresar precio</string>
+    <string name="hint_description">Ingresar descripción</string>
+    <string name="search_food">Buscar por nombre o categoría</string>
     <!-- errors -->
     <string name="error_first_name">Nombre obligatorio</string>
     <string name="error_last_name">Apellido obligatorio</string>
     <string name="error_phone">Teléfono obligatorio</string>
     <string name="error_email">Email valido oblitarorio</string>
-    <string name="error_password">Contraseña oblitaroria y debe tener tener al menos 6 caracteres</string>
+    <string name="error_password">Contraseña oblitaroria y debe tener al menos 6 caracteres</string>
     <string name="invalid_email">Formato del email incorrecto</string>
     <string name="wrong_password">Contraseña incorrecta</string>
     <string name="weak_password">La contraseña debe tener al menos 6 caracteres</string>
@@ -95,10 +99,12 @@
     <string name="change_error">ERROR, verificar contraseña y volver a intentar</string>
     <string name="dialog_title">Agregar comida</string>
     <string name="dialog_msg">Llenar todos los campos</string>
-    <string name="dialog_name">Nombre</string>
-    <string name="dialog_category">Categoria</string>
-    <string name="dialog_price">Precio</string>
-    <string name="dialog_description">Descripción</string>
+    <string name="dialog_name">Nombre:</string>
+    <string name="dialog_category">Categoría:</string>
+    <string name="dialog_price">Precio:</string>
+    <string name="select_cat">Seleccionar categoría</string>
+    <string name="list_creator">Agregado por:</string>
+    <string name="dialog_description">Descripción:</string>
     <string-array name="categories_array">
         <item>Comida</item>
         <item>Bebida</item>

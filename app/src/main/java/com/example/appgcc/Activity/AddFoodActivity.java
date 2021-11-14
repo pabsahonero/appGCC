@@ -2,8 +2,11 @@ package com.example.appgcc.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,8 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AddFoodActivity extends AppCompatActivity {
-    EditText name, category, price, description;
-    Button saveFood;
+    private EditText name, price, description;
+    private Spinner spinner;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
 
@@ -25,10 +28,13 @@ public class AddFoodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_food);
         name = findViewById(R.id.dialog_name);
-        category = findViewById(R.id.dialog_category);
+        spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categories_array, android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         price = findViewById(R.id.dialog_price);
         description = findViewById(R.id.dialog_description);
-        saveFood = findViewById(R.id.btnSaveFood);
+        Button saveFood = findViewById(R.id.btnSaveFood);
 
         saveFood.setOnClickListener(view -> {
             if (isNull()) {
@@ -42,13 +48,13 @@ public class AddFoodActivity extends AppCompatActivity {
     }
 
     private boolean isNull() {
-        return !name.getText().toString().isEmpty() && !category.getText().toString().isEmpty() && !price.getText().toString().isEmpty() && !description.getText().toString().isEmpty();
+        return !name.getText().toString().isEmpty() && !price.getText().toString().isEmpty() && !description.getText().toString().isEmpty();
     }
 
     private void insertFood() {
         Food food = new Food(
                 name.getText().toString(),
-                description.getText().toString(),
+                spinner.getSelectedItem().toString(),
                 price.getText().toString(),
                 description.getText().toString(),
                 user.getEmail()

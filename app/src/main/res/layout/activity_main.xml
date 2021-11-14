@@ -94,12 +94,13 @@
                 android:textSize="16sp"
                 tools:ignore="TextContrastCheck" />
 
-            <TextView
-                android:id="@+id/tvForgotPassword"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnForgotPassword"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#FDD835"
                 android:gravity="center"
-                android:minHeight="30dp"
                 android:text="@string/button_forgot"
                 android:textColor="@color/black"
                 android:textSize="16sp" />

@@ -110,38 +110,6 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/tvNewPass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/tvNewPass"
-                android:textColor="@color/blue_title"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilNewPass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/hint_first_name">
-
-                <EditText
-                    android:id="@+id/etNewPass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:autofillHints="given-name"
-                    android:ems="10"
-                    android:hint="@string/hintNewPass"
-                    android:inputType="textPersonName"
-                    android:maxLength="20"
-                    android:minHeight="48dp"
-                    android:textSize="16sp"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
             <Button
                 android:id="@+id/btnChangePass"
                 android:layout_width="250dp"

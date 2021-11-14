@@ -46,11 +46,19 @@
                 android:src="@drawable/ic_whatsapp"
                 tools:ignore="ImageContrastCheck" />
 
+            <Button
+                android:id="@+id/btnShare"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/share" />
+
             <TextView
                 android:id="@+id/txtContactPhone1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/text_contact_phone"
                 android:textColor="@color/black"
@@ -91,7 +99,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/txtHours"
+                android:id="@+id/txtHours1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -101,6 +109,25 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:drawableLeftCompat="@drawable/ic_clock" />
+
+            <TextView
+                android:id="@+id/txtHours2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@string/hours"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvIsOpen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:textColor="@color/blue_title"
+                android:textSize="20sp" />
 
         </LinearLayout>
     </ScrollView>

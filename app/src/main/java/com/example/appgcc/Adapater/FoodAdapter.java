@@ -3,6 +3,8 @@ package com.example.appgcc.Adapater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,13 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.appgcc.Entities.Food;
 import com.example.appgcc.R;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements Filterable {
 
     List<Food> foods;
+    List<Food> foodList;
+
     public FoodAdapter(List<Food> foods) {
         this.foods = foods;
+        foodList = new ArrayList<>(foods);
     }
 
     @NonNull
@@ -57,4 +64,37 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             creatorID = itemView.findViewById(R.id.tvCreatorID);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return foodFilter;
+    }
+
+    private final Filter foodFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Food> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(foodList);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase();
+                for (Food item : foodList) {
+                    if (item.getName().toLowerCase().contains(filterPattern) || item.getCategory().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            foods.clear();
+            foods.addAll((List<Food>) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

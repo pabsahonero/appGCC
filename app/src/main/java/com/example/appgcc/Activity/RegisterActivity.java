@@ -2,16 +2,11 @@ package com.example.appgcc.Activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import android.util.Patterns;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -19,9 +14,6 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.appgcc.Entities.Customer;
 import com.example.appgcc.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.firestore.CollectionReference;
@@ -64,22 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        btnCancelSignUp.setOnTouchListener(new View.OnTouchListener() {
-            final GestureDetector gestureDetector = new GestureDetector(getApplicationContext(),new GestureDetector.SimpleOnGestureListener() {
-                @Override
-                public boolean onDoubleTap(MotionEvent e) {
-                    finish();
-                    return super.onDoubleTap(e);
-                }
-            });
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                gestureDetector.onTouchEvent(motionEvent);
-                cleanData();
-                Toast.makeText(RegisterActivity.this, getString(R.string.double_tap), Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
+        btnCancelSignUp.setOnClickListener(view -> cleanData());
     }
 
     private void cleanData() {
@@ -96,20 +73,17 @@ public class RegisterActivity extends AppCompatActivity {
         String phone = etPhone.getText().toString();
         String email = etEmail.getText().toString();
         String pass = etPassword.getText().toString();
-        firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Customer customer = new Customer(firstName, lastName, email, phone, pass);
-                    String userID = firebaseAuth.getUid();
-                    DocumentReference documentReference = usersRef.document(userID);
-                    documentReference.set(customer);
-                    Toast.makeText(RegisterActivity.this, getString(R.string.toast_signup_ok), Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    String errorCode = ((FirebaseAuthException) Objects.requireNonNull(task.getException())).getErrorCode();
-                    setToastError(errorCode);
-                }
+        firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(task -> {
+            if(task.isSuccessful()) {
+                Customer customer = new Customer(firstName, lastName, email, phone, pass);
+                String userID = firebaseAuth.getUid();
+                DocumentReference documentReference = usersRef.document(userID);
+                documentReference.set(customer);
+                Toast.makeText(RegisterActivity.this, getString(R.string.toast_signup_ok), Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                String errorCode = ((FirebaseAuthException) Objects.requireNonNull(task.getException())).getErrorCode();
+                setToastError(errorCode);
             }
         });
     }

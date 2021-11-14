@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bc_light_blue"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".Activity.MenuActivity"
     tools:layout_editor_absoluteY="25dp">
 
@@ -31,7 +33,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/tv_main_welcome"
                 android:textColor="@color/blue_title"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -44,12 +46,22 @@
                 android:text="@string/tv_main_sub"
                 android:textSize="20sp" />
 
+            <SearchView
+                android:id="@+id/searchV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="4dp"
+                android:iconifiedByDefault="false"
+                android:queryHint="@string/search_food" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_menu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp">
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -68,7 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="12dp"
-                android:text="@string/btn_myList" />
+                android:backgroundTint="@color/red"
+                android:text="@string/btn_myList"
+                android:textColor="@color/black" />
 
         </LinearLayout>
     </ScrollView>

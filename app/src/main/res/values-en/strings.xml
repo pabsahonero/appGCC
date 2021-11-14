@@ -57,12 +57,12 @@
     <string name="btn_logout">Log out</string>
     <string name="alert_title">Log out</string>
     <string name="alert_msg">Are you sure you want to log out?</string>
-    <string name="alert_yes">Ok</string>
+    <string name="alert_yes">OK</string>
     <string name="alert_no">Cancel</string>
-    <string name="dialog_name">Name</string>
-    <string name="dialog_category">Category</string>
-    <string name="dialog_price">Price</string>
-    <string name="dialog_description">Description</string>
+    <string name="dialog_name">Name:</string>
+    <string name="dialog_category">Category:</string>
+    <string name="dialog_price">Price:</string>
+    <string name="dialog_description">Description:</string>
     <string name="dialog_title">Add food</string>
     <string name="dialog_msg">Fill in all the fields</string>
     <string name="btn_addFood">Add</string>
@@ -79,8 +79,19 @@
     <string name="change_title">Change password</string>
     <string name="change_ok">Password changed</string>
     <string name="change_error">ERROR, check the password and try again</string>
-    <string name="tvOldPass">Current password</string>
-    <string name="tvNewPass">New password</string>
-    <string name="hintOldPass">Insert the current password</string>
-    <string name="hintNewPass">Insert the new password</string>
+    <string-array name="categories_array">
+        <item>Food</item>
+        <item>Drink</item>
+        <item>Dessert</item>
+    </string-array>
+    <string name="select_cat">Select category</string>
+    <string name="list_creator">Added by:</string>
+    <string name="hint_name">Insert name</string>
+    <string name="hint_price">Insert price</string>
+    <string name="hint_description">Insert description</string>
+    <string name="search_food">Search by name or category</string>
+    <string name="hours">All days from 10 a.m. to 8 p.m.</string>
+    <string name="is_open">OPEN in this moment</string>
+    <string name="is_closed">CLOSED in this moment</string>
+    <string name="share">Share</string>
 </resources>

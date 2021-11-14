@@ -6,7 +6,6 @@ import android.text.InputType;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText txt_user, txt_password;
     private FirebaseAuth mAuth;
-
     AwesomeValidation awesomeValidation;
 
     @Override
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         txt_password = findViewById(R.id.txtPass);
         Button btnSignUp = findViewById(R.id.btnSignUpHome);
         Button btnLogIn = findViewById(R.id.btnLogIn);
-        TextView btnForgot = findViewById(R.id.tvForgotPassword);
+        Button btnForgot = findViewById(R.id.btnForgotPassword);
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.txtUser, Patterns.EMAIL_ADDRESS,R.string.hint_email);
@@ -71,21 +69,23 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnForgot.setOnClickListener(view -> {
-            EditText resetEmail = new EditText(view.getContext());
-            resetEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-            AlertDialog.Builder resetDialog = new AlertDialog.Builder(view.getContext());
-            resetDialog.setTitle(getString(R.string.forgot_title))
-            .setMessage(getString(R.string.forgot_msg))
-            .setView(resetEmail)
-            .setPositiveButton(getString(R.string.alert_yes), (dialogInterface, i) -> {
-                String email = resetEmail.getText().toString();
-                mAuth.sendPasswordResetEmail(email)
-                        .addOnSuccessListener(unused -> Toast.makeText(MainActivity.this, getString(R.string.forgot_ok), Toast.LENGTH_LONG).show())
-                        .addOnFailureListener(e -> Toast.makeText(MainActivity.this, getString(R.string.forgot_error) + e.getMessage(), Toast.LENGTH_LONG).show());
-            }).setNegativeButton(getString(R.string.alert_no), (dialogInterface, i) -> dialogInterface.cancel())
-            .show();
-        });
+        btnForgot.setOnClickListener(view -> sendResetLink());
+    }
+
+    private void sendResetLink() {
+        EditText resetEmail = new EditText(this);
+        resetEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        AlertDialog.Builder resetDialog = new AlertDialog.Builder(this);
+        resetDialog.setTitle(getString(R.string.forgot_title))
+                .setMessage(getString(R.string.forgot_msg))
+                .setView(resetEmail)
+                .setPositiveButton(getString(R.string.alert_yes), (dialogInterface, i) -> {
+                    String email = resetEmail.getText().toString();
+                    mAuth.sendPasswordResetEmail(email)
+                            .addOnSuccessListener(unused -> Toast.makeText(MainActivity.this, getString(R.string.forgot_ok), Toast.LENGTH_LONG).show())
+                            .addOnFailureListener(e -> Toast.makeText(MainActivity.this, getString(R.string.forgot_error) + e.getMessage(), Toast.LENGTH_LONG).show());
+                }).setNegativeButton(getString(R.string.alert_no), (dialogInterface, i) -> dialogInterface.cancel())
+                .show();
     }
 
     private void setToastError (String error) {
