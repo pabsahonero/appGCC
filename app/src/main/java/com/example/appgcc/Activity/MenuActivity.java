@@ -6,6 +6,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appgcc.Adapater.FoodAdapter;
+import com.example.appgcc.EditActivity;
 import com.example.appgcc.Entities.Food;
 import com.example.appgcc.R;
 import com.example.appgcc.Repository.FoodRepository;
@@ -28,18 +30,18 @@ public class MenuActivity extends AppCompatActivity {
     private FoodAdapter adapter;
     FoodRepository foodRepository;
     List<Food> foods;
-
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        RecyclerView recyclerView = findViewById(R.id.rv_menu);
+        recyclerView = findViewById(R.id.rv_menu);
         SearchView searchView = findViewById(R.id.searchV);
         foodRepository = new FoodRepository(getApplication());
         foods = foodRepository.getAllFoods();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new FoodAdapter(foods);
+        adapter = new FoodAdapter(foods, item -> moveToEdit(item));
         recyclerView.setAdapter(adapter);
 
         TextView tvHello = findViewById(R.id.tvMainWelcome);
@@ -87,13 +89,18 @@ public class MenuActivity extends AppCompatActivity {
             }
             return true;
         });
-    }/*
-    @Override
-    public void onStart() {
-        super.onStart();
-
     }
-*/
+
+    private void moveToEdit (Food food) {
+        if (food.getCreatorID().equals(user.getEmail())) {
+            Intent i = new Intent(this, EditActivity.class);
+            i.putExtra("item", food);
+            startActivity(i);
+        }
+        else {
+            Toast.makeText(this, "Solo podes editar tus comidas", Toast.LENGTH_LONG).show();
+        }
+    }
 
     private void confirmLogOut() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

@@ -97,6 +97,8 @@
     <string name="change_title">Cambiar contraseña</string>
     <string name="change_ok">Contraseña cambiada</string>
     <string name="change_error">ERROR, verificar contraseña y volver a intentar</string>
+    <string name="edit_title">Editar o borrar comida</string>
+    <string name="edit_delete">Borrar</string>
     <string name="dialog_title">Agregar comida</string>
     <string name="dialog_msg">Llenar todos los campos</string>
     <string name="dialog_name">Nombre:</string>

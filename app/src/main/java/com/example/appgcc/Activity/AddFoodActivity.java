@@ -29,9 +29,9 @@ public class AddFoodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_food);
         name = findViewById(R.id.dialog_name);
         spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.categories_array, android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(spinnerAdapter);
         price = findViewById(R.id.dialog_price);
         description = findViewById(R.id.dialog_description);
         Button saveFood = findViewById(R.id.btnSaveFood);

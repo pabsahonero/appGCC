@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,14 +20,18 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 
     List<Food> foods;
     List<Food> foodList;
+    private final RecyclerItemClick itemClick;
 
-    public FoodAdapter(List<Food> foods) {
-        this.foods = foods;
-        notifyDataSetChanged();
-        foodList = new ArrayList<>(foods);
-
+    public interface RecyclerItemClick {
+        void itemClick(Food item);
     }
 
+    public FoodAdapter(List<Food> foods, RecyclerItemClick itemClick) {
+        this.foods = foods;
+        this.itemClick = itemClick;
+        notifyDataSetChanged();
+        foodList = new ArrayList<>(foods);
+    }
 
     @NonNull
     @Override
@@ -39,17 +42,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 
     @Override
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
+        final Food item = foods.get(position);
         holder.name.setText(foods.get(position).getName());
         holder.category.setText(foods.get(position).getCategory());
         holder.price.setText(foods.get(position).getPrice());
         holder.description.setText(foods.get(position).getDescription());
         holder.creatorID.setText(foods.get(position).getCreatorID());
-        holder.btnDelete.setOnClickListener(view -> {
-            int newPosition = holder.getAdapterPosition();
-            foods.remove(newPosition);
-            notifyItemRemoved(newPosition);
-            notifyItemRangeChanged(newPosition, foods.size());
-        });
+        holder.itemView.setOnClickListener(view -> itemClick.itemClick(item));
     }
 
     @Override
@@ -63,7 +62,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
         public TextView price;
         public TextView description;
         public TextView creatorID;
-        public ImageButton btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,7 +70,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
             price = itemView.findViewById(R.id.tvPrice);
             description = itemView.findViewById(R.id.tvDescription);
             creatorID = itemView.findViewById(R.id.tvCreatorID);
-            btnDelete = itemView.findViewById(R.id.btnDeleteItem);
         }
     }
 
@@ -85,7 +82,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Food> filteredList = new ArrayList<>();
-
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(foodList);
             } else {

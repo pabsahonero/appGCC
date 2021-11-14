@@ -94,4 +94,6 @@
     <string name="is_open">OPEN in this moment</string>
     <string name="is_closed">CLOSED in this moment</string>
     <string name="share">Share</string>
+    <string name="edit_title">Edit or delete food</string>
+    <string name="edit_delete">Delete</string>
 </resources>
