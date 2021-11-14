@@ -26,6 +26,8 @@ public class MenuActivity extends AppCompatActivity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private final FirebaseUser user = mAuth.getCurrentUser();
     private FoodAdapter adapter;
+    FoodRepository foodRepository;
+    List<Food> foods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +35,9 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         RecyclerView recyclerView = findViewById(R.id.rv_menu);
         SearchView searchView = findViewById(R.id.searchV);
+        foodRepository = new FoodRepository(getApplication());
+        foods = foodRepository.getAllFoods();
 
-        FoodRepository foodRepository = new FoodRepository(getApplication());
-        List<Food> foods = foodRepository.getAllFoods();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FoodAdapter(foods);
         recyclerView.setAdapter(adapter);
@@ -92,6 +94,7 @@ public class MenuActivity extends AppCompatActivity {
 
     }
 */
+
     private void confirmLogOut() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);

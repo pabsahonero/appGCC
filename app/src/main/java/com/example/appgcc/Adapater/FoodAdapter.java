@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,6 @@ import com.example.appgcc.Entities.Food;
 import com.example.appgcc.R;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements Filterable {
@@ -24,8 +24,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
 
     public FoodAdapter(List<Food> foods) {
         this.foods = foods;
+        notifyDataSetChanged();
         foodList = new ArrayList<>(foods);
+
     }
+
 
     @NonNull
     @Override
@@ -41,6 +44,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
         holder.price.setText(foods.get(position).getPrice());
         holder.description.setText(foods.get(position).getDescription());
         holder.creatorID.setText(foods.get(position).getCreatorID());
+        holder.btnDelete.setOnClickListener(view -> {
+            int newPosition = holder.getAdapterPosition();
+            foods.remove(newPosition);
+            notifyItemRemoved(newPosition);
+            notifyItemRangeChanged(newPosition, foods.size());
+        });
     }
 
     @Override
@@ -54,6 +63,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
         public TextView price;
         public TextView description;
         public TextView creatorID;
+        public ImageButton btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +72,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
             price = itemView.findViewById(R.id.tvPrice);
             description = itemView.findViewById(R.id.tvDescription);
             creatorID = itemView.findViewById(R.id.tvCreatorID);
+            btnDelete = itemView.findViewById(R.id.btnDeleteItem);
         }
     }
 

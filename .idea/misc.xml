@@ -10,8 +10,13 @@
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_baseline_local_phone_24.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_clock.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_contact.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_lock.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_order_log.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/ic_profile.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/drawable/lightblue_background.xml" value="0.22552083333333334" />
@@ -35,7 +40,7 @@
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/activity_web.xml" value="0.25" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/bottom_navigation_menu.xml" value="0.2046875" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/dialog_addfood.xml" value="0.33" />
-        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/list_food.xml" value="0.25" />
+        <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/list_food.xml" value="0.33" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/list_item.xml" value="0.209375" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/list_order.xml" value="0.2046875" />
         <entry key="..\:/Users/Pablo/AndroidStudioProjects/AppGCC/app/src/main/res/layout/spinner_item_document.xml" value="0.209375" />

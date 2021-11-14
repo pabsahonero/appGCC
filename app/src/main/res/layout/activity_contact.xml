@@ -64,7 +64,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:drawableLeftCompat="@drawable/ic_baseline_local_phone_24" />
+                app:drawableLeftCompat="@drawable/ic_phone" />
 
             <TextView
                 android:id="@+id/txtContactPhone2"
@@ -85,7 +85,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
+                app:drawableStartCompat="@drawable/ic_location" />
 
             <TextView
                 android:id="@+id/txtAddress2"
