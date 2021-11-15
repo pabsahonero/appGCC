@@ -51,7 +51,6 @@
     <string name="invalid_email">Wrong email format</string>
     <string name="wrong_password">Wrong password</string>
     <string name="weak_password">Password must at least 6 characters long</string>
-    <string name="double_tap">Double tap to return</string>
     <string name="user_not_found">Invalid user or not registered</string>
     <string name="user_disabled">User disabled by administrator</string>
     <string name="btn_logout">Log out</string>
@@ -96,4 +95,6 @@
     <string name="share">Share</string>
     <string name="edit_title">Edit or delete food</string>
     <string name="edit_delete">Delete</string>
+    <string name="food_updated">Food updated</string>
+    <string name="food_deleted">Food deleted</string>
 </resources>

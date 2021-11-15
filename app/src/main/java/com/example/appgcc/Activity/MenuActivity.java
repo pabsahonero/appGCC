@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appgcc.Adapater.FoodAdapter;
-import com.example.appgcc.EditActivity;
 import com.example.appgcc.Entities.Food;
 import com.example.appgcc.R;
 import com.example.appgcc.Repository.FoodRepository;
@@ -65,11 +64,6 @@ public class MenuActivity extends AppCompatActivity {
         Button btnAddFood = findViewById(R.id.btnAddFood);
         btnAddFood.setOnClickListener(view -> {
             Intent intent = new Intent(this, AddFoodActivity.class);
-            startActivity(intent);
-        });
-        Button btnMyFood = findViewById(R.id.btnMyFood);
-        btnMyFood.setOnClickListener(view -> {
-            Intent intent = new Intent(this, FoodListActivity.class);
             startActivity(intent);
         });
 

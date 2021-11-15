@@ -74,9 +74,10 @@
     <string name="login_complete">Ingresa tu email y contraseña</string>
     <string name="login_invalid_user">Email/password valido</string>
     <string name="invalid_password">La contraseña debe tener al menos 6 caracteres</string>
-    <string name="double_tap">Doble toque para volver</string>
     <string name="user_not_found">Usuario invalido o no registrado.</string>
     <string name="user_disabled">Usuario deshabiitado por el administrador</string>
+    <string name="food_updated">Comida actualizada</string>
+    <string name="food_deleted">Comida borrada</string>
     <!-- main-->
     <string name="tv_main_sub">Lista de comidas</string>
     <string name="tv_main_welcome">Hola</string>

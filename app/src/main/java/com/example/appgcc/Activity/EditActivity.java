@@ -1,4 +1,4 @@
-package com.example.appgcc;
+package com.example.appgcc.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,11 +6,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appgcc.Activity.MenuActivity;
 import com.example.appgcc.Entities.Food;
+import com.example.appgcc.R;
 import com.example.appgcc.Repository.FoodRepository;
 
 public class EditActivity extends AppCompatActivity {
@@ -48,21 +50,33 @@ public class EditActivity extends AppCompatActivity {
     }
 
     private void updateFood(Food food) {
-        String name = editName.getText().toString();
-        String cat = editSpinner.getSelectedItem().toString();
-        String price = editPrice.getText().toString();
-        String desc = editDescription.getText().toString();
-        food.setName(name);
-        food.setCategory(cat);
-        food.setPrice(price);
-        food.setDescription(desc);
-        FoodRepository foodRepository = new FoodRepository(getApplication());
-        foodRepository.update(food);
+        if (isNull()) {
+            String name = editName.getText().toString();
+            String cat = editSpinner.getSelectedItem().toString();
+            String price = editPrice.getText().toString();
+            String desc = editDescription.getText().toString();
+            food.setName(name);
+            food.setCategory(cat);
+            food.setPrice(price);
+            food.setDescription(desc);
+            FoodRepository foodRepository = new FoodRepository(getApplication());
+            foodRepository.update(food);
+            Toast.makeText(this, getString(R.string.food_updated), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(R.string.dialog_msg), Toast.LENGTH_SHORT).show();
+        }
+
+
     }
+    private boolean isNull() {
+        return !editName.getText().toString().isEmpty() && !editPrice.getText().toString().isEmpty() && !editDescription.getText().toString().isEmpty();
+    }
+
 
     private void deleteFood(Food food) {
         FoodRepository foodRepository = new FoodRepository(getApplication());
         foodRepository.delete(food);
+        Toast.makeText(this, getString(R.string.food_deleted), Toast.LENGTH_SHORT).show();
     }
 
     private void returnMenu() {

@@ -74,16 +74,6 @@
                 android:layout_marginBottom="4dp"
                 android:text="@string/btn_addFood" />
 
-            <Button
-                android:id="@+id/btnMyFood"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/red"
-                android:text="@string/btn_myList"
-                android:textColor="@color/black" />
-
         </LinearLayout>
     </ScrollView>
 

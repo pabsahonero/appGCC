@@ -10,14 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppGCC">
         <activity
-            android:name=".EditActivity"
+            android:name=".Activity.EditActivity"
             android:exported="false" />
         <activity
             android:name=".Activity.AddFoodActivity"
             android:exported="false" />
-        <activity
-            android:name=".Activity.FoodListActivity"
-            android:exported="true" />
         <activity
             android:name=".Activity.ProfileActivity"
             android:exported="true" />
